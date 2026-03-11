@@ -378,13 +378,14 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Floating cubes */}
+      {/* Floating cubes — hidden on xs to keep narrow screens clean */}
       <Box
         sx={{
           position: "absolute",
           inset: 0,
           overflow: "hidden",
           pointerEvents: "none",
+          display: { xs: "none", sm: "block" },
         }}
       >
         {cubes.map((c, i) => (
@@ -396,8 +397,8 @@ export default function HeroSection() {
       <Box
         sx={{
           position: "absolute",
-          width: 300,
-          height: 300,
+          width: { xs: 180, sm: 300 },
+          height: { xs: 180, sm: 300 },
           borderRadius: "50%",
           background:
             "radial-gradient(circle, rgba(243, 17, 115, 0.18) 0%, transparent 70%)",
@@ -414,8 +415,8 @@ export default function HeroSection() {
       <Box
         sx={{
           position: "absolute",
-          width: 250,
-          height: 250,
+          width: { xs: 160, sm: 250 },
+          height: { xs: 160, sm: 250 },
           borderRadius: "50%",
           background:
             "radial-gradient(circle, rgba(201, 34, 106, 0.01) 0%, transparent 70%)",
@@ -431,13 +432,24 @@ export default function HeroSection() {
       />
 
       {/* Content */}
-      <Box sx={{ position: "relative", zIndex: 1, textAlign: "center", px: 2 }}>
+      <Box
+        sx={{
+          position: "relative",
+          zIndex: 1,
+          textAlign: "center",
+          px: { xs: 2, sm: 4, md: 2 },
+          width: "100%",
+          maxWidth: 860,
+          mx: "auto",
+        }}
+      >
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
           transition={{ duration: 0.6 }}
         >
+          {/* Logo */}
           <motion.div
             variants={item}
             style={{
@@ -446,48 +458,50 @@ export default function HeroSection() {
               justifyContent: "center",
             }}
           >
-            <Box
-              sx={{
-                px: 4,
-                py: 2,
-                borderRadius: 3,
-              }}
-            >
+            <Box sx={{ px: { xs: 2, sm: 4 }, py: { xs: 1, sm: 2 }, borderRadius: 3 }}>
               <Image
                 src="/logo.png"
                 alt="Rubix Egypt"
                 width={280}
                 height={90}
                 priority
-                style={{ objectFit: "contain" }}
+                style={{
+                  objectFit: "contain",
+                  width: "clamp(160px, 45vw, 280px)",
+                  height: "auto",
+                }}
               />
             </Box>
           </motion.div>
 
+          {/* Tagline heading */}
           <motion.div variants={item}>
             <Typography
               variant="h2"
               sx={{
-                fontSize: { xs: "1.75rem", sm: "2rem", md: "2.5rem" },
+                fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
                 fontWeight: 700,
                 color: "text.secondary",
                 maxWidth: 600,
                 mx: "auto",
-                mb: 2,
+                mb: { xs: 1.5, sm: 2 },
               }}
             >
               Rubix Egypt
             </Typography>
           </motion.div>
 
+          {/* Description paragraphs */}
           <motion.div variants={item}>
             <Typography
               sx={{
                 color: "text.secondary",
                 maxWidth: 720,
                 mx: "auto",
-                mb: 2,
+                mb: { xs: 1.5, sm: 2 },
                 lineHeight: 1.75,
+                fontSize: { xs: "0.875rem", sm: "1rem" },
+                px: { xs: 1, sm: 0 },
               }}
             >
               Rubix Egypt is a specialized technology and development team
@@ -502,8 +516,11 @@ export default function HeroSection() {
                 color: "text.secondary",
                 maxWidth: 720,
                 mx: "auto",
-                mb: 4,
+                mb: { xs: 3, sm: 4 },
                 lineHeight: 1.75,
+                fontSize: { xs: "0.875rem", sm: "1rem" },
+                px: { xs: 1, sm: 0 },
+                display: { xs: "none", sm: "block" },
               }}
             >
               By combining modern software engineering with artificial
@@ -515,51 +532,60 @@ export default function HeroSection() {
             </Typography>
           </motion.div>
 
-          <motion.div
-            variants={item}
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              component={motion.a}
-              href="#projects"
-              variant="contained"
-              size="large"
+          {/* CTA Buttons */}
+          <motion.div variants={item}>
+            <Box
               sx={{
-                bgcolor: "primary.main",
-                px: 3,
-                py: 1.5,
-                "&:hover": { bgcolor: "primary.dark" },
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                flexWrap: "wrap",
+                gap: { xs: 1.5, sm: 1.5 },
+                justifyContent: "center",
+                alignItems: "center",
+                px: { xs: 2, sm: 0 },
               }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
             >
-              Explore Our Projects
-            </Button>
-            <Button
-              component={motion.a}
-              href="#about"
-              variant="outlined"
-              size="large"
-              sx={{
-                borderColor: "primary.main",
-                color: "primary.main",
-                px: 3,
-                py: 1.5,
-                "&:hover": {
-                  borderColor: "primary.light",
-                  color: "primary.light",
-                },
-              }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Learn About Rubix Egypt
-            </Button>
+              <Button
+                component={motion.a}
+                href="#projects"
+                variant="contained"
+                size="large"
+                sx={{
+                  bgcolor: "primary.main",
+                  px: 3,
+                  py: 1.5,
+                  width: { xs: "100%", sm: "auto" },
+                  minWidth: { sm: 200 },
+                  "&:hover": { bgcolor: "primary.dark" },
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Explore Our Projects
+              </Button>
+              <Button
+                component={motion.a}
+                href="#about"
+                variant="outlined"
+                size="large"
+                sx={{
+                  borderColor: "primary.main",
+                  color: "primary.main",
+                  px: 3,
+                  py: 1.5,
+                  width: { xs: "100%", sm: "auto" },
+                  minWidth: { sm: 200 },
+                  "&:hover": {
+                    borderColor: "primary.light",
+                    color: "primary.light",
+                  },
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Learn About Rubix Egypt
+              </Button>
+            </Box>
           </motion.div>
         </motion.div>
       </Box>

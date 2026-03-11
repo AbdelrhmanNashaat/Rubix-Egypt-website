@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={plusJakarta.variable}>
-      <body style={{ fontFamily: "var(--font-plus-jakarta), sans-serif" }}>
+    <html lang="en" className={plusJakarta.variable} suppressHydrationWarning>
+      <body style={{ fontFamily: "var(--font-plus-jakarta), sans-serif" }} suppressHydrationWarning>
         <ThemeRegistry>{children}</ThemeRegistry>
       </body>
     </html>

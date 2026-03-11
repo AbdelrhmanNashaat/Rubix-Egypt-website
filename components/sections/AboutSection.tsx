@@ -36,7 +36,7 @@ export default function AboutSection() {
         <Grid item xs={12} md={7}>
           <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }}>
             <motion.div variants={fadeUp}>
-              <Typography variant="h2" sx={{ mb: 2, fontWeight: 700 }}>
+              <Typography variant="h2" sx={{ mb: 2, fontWeight: 700, fontSize: { xs: "1.75rem", sm: "2.125rem" } }}>
                 About Rubix Egypt
               </Typography>
             </motion.div>

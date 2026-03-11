@@ -157,7 +157,7 @@ function ProjectAccordion({
           },
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2, minWidth: 0 }}>
           <Box
             sx={{
               flexShrink: 0,
@@ -226,9 +226,9 @@ function ProjectAccordion({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
+            style={{ overflowY: "hidden" }}
           >
-            <Box sx={{ pt: 2 }}>{children}</Box>
+            <Box sx={{ pt: 2, minWidth: 0, overflowX: "auto" }}>{children}</Box>
           </motion.div>
         )}
       </AnimatePresence>
@@ -2028,7 +2028,10 @@ export default function ProjectsSection() {
 
   return (
     <SectionWrapper id="projects" label="PROJECTS & RESEARCH">
-      <Typography variant="h2" sx={{ mb: 4, fontWeight: 700 }}>
+      <Typography
+        variant="h2"
+        sx={{ mb: 4, fontWeight: 700, fontSize: { xs: "1.75rem", sm: "2.125rem" } }}
+      >
         Projects
       </Typography>
 
@@ -2071,7 +2074,10 @@ export default function ProjectsSection() {
         >
           <WorcareContent />
         </ProjectAccordion>
-        <Typography variant="h2" sx={{ mt: 2, fontWeight: 700 }}>
+        <Typography
+          variant="h2"
+          sx={{ mt: 2, fontWeight: 700, fontSize: { xs: "1.75rem", sm: "2.125rem" } }}
+        >
           Research
         </Typography>
         <ProjectAccordion

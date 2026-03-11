@@ -72,7 +72,7 @@ export default function InsightsSection() {
     <Box
       component="section"
       sx={{
-        py: 10,
+        py: { xs: 6, md: 10 },
         bgcolor: "#111118",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
@@ -97,7 +97,7 @@ export default function InsightsSection() {
           >
             INSIGHTS
           </Typography>
-          <Typography variant="h2" sx={{ mb: 5, fontWeight: 700 }}>
+          <Typography variant="h2" sx={{ mb: 5, fontWeight: 700, fontSize: { xs: "1.75rem", sm: "2.125rem" } }}>
             At a Glance
           </Typography>
         </motion.div>

@@ -27,13 +27,13 @@ export default function SectionWrapper({
     <Box
       id={id}
       component="section"
-      sx={{ py: 10, ...sx }}
+      sx={{ py: { xs: 6, md: 10 }, ...sx }}
     >
       <Container maxWidth="lg">
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.01 }}
           variants={fadeUp}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >

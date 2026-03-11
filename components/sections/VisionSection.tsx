@@ -11,7 +11,7 @@ export default function VisionSection() {
       component="section"
       id="vision"
       sx={{
-        py: 12,
+        py: { xs: 7, md: 12 },
         position: "relative",
         overflow: "hidden",
         background: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(38,3,18,0.35) 0%, transparent 70%)",
@@ -29,6 +29,7 @@ export default function VisionSection() {
             sx={{
               fontWeight: 700,
               mb: 2,
+              fontSize: { xs: "1.75rem", sm: "2.125rem" },
               background: "linear-gradient(135deg, #BE0E5B, #FF6B9D)",
               backgroundClip: "text",
               WebkitBackgroundClip: "text",

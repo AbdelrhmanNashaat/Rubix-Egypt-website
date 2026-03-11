@@ -210,7 +210,7 @@ export default function TeamSection() {
   return (
     <SectionWrapper id="team" label="THE PEOPLE BEHIND IT">
       <Box sx={{ textAlign: "center", mb: 5 }}>
-        <Typography variant="h2" sx={{ fontWeight: 700, mb: 1 }}>
+        <Typography variant="h2" sx={{ fontWeight: 700, mb: 1, fontSize: { xs: "1.75rem", sm: "2.125rem" } }}>
           Rubix{" "}
           <Box component="span" sx={{ color: "primary.main" }}>
             Egypt Team
