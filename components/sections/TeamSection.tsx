@@ -144,7 +144,7 @@ export default function TeamSection() {
             }}
             modules={[Navigation, Pagination, Autoplay]}
             pagination={{ clickable: true }}
-            autoplay={{ delay: 1200, disableOnInteraction: true }}
+            autoplay={{ delay: 1200 }}
             loop
             spaceBetween={20}
             breakpoints={{
