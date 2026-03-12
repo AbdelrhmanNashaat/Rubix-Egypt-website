@@ -178,7 +178,7 @@ export default function TeamSection() {
                       "&:hover": {
                         borderColor: `#BE0E5B`,
                         bgcolor: "rgba(255,255,255,0.04)",
-                        transform: "translateY(-4px)",
+                        transform: "translateY(4px)",
                         boxShadow: `0 12px 40px #BE0E5B15`,
                       },
                     }}
