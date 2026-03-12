@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
@@ -238,6 +239,131 @@ function ProjectAccordion({
             style={{ overflowY: "hidden" }}
           >
             <Box sx={{ pt: 2, minWidth: 0, overflowX: "auto" }}>{children}</Box>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Box>
+  );
+}
+
+function VideoPlayer({ src, title }: { src: string; title: string }) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    setPlaying(true);
+    setTimeout(() => {
+      videoRef.current?.play();
+    }, 100);
+  };
+
+  return (
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        aspectRatio: "16/9",
+        bgcolor: "#0A0A0F",
+        overflow: "hidden",
+        cursor: playing ? "default" : "pointer",
+      }}
+      onClick={!playing ? handlePlay : undefined}
+    >
+      <video
+        ref={videoRef}
+        src={src}
+        controls={playing}
+        playsInline
+        preload="metadata"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          display: "block",
+        }}
+      />
+
+      {/* Placeholder overlay */}
+      <AnimatePresence>
+        {!playing && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 2,
+            }}
+          >
+            {/* Gradient background */}
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "radial-gradient(ellipse 0% 100% at 20% 20%, rgba(190,14,91,0.25) 0%, rgba(44, 17, 44, 0.95) 70%)",
+              }}
+            />
+
+            {/* Play button */}
+            <Box
+              sx={{
+                position: "relative",
+                zIndex: 1,
+                width: { xs: 56, sm: 72 },
+                height: { xs: 56, sm: 72 },
+                borderRadius: "50%",
+                bgcolor: "rgba(255,255,255,0.12)",
+                backdropFilter: "blur(12px)",
+                border: "2px solid rgba(255,255,255,0.2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mb: 2,
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  bgcolor: "rgba(190,14,91,0.35)",
+                  borderColor: "rgba(190,14,91,0.6)",
+                  transform: "scale(1.08)",
+                },
+              }}
+            >
+              <PlayArrowIcon
+                sx={{ fontSize: { xs: 28, sm: 36 }, color: "#fff" }}
+              />
+            </Box>
+
+            {/* Title text */}
+            <Typography
+              sx={{
+                position: "relative",
+                zIndex: 1,
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: { xs: "0.85rem", sm: "1rem" },
+                textAlign: "center",
+                px: 2,
+              }}
+            >
+              {title}
+            </Typography>
+            <Typography
+              variant="caption"
+              sx={{
+                position: "relative",
+                zIndex: 1,
+                color: "rgba(255,255,255,0.5)",
+                mt: 0.5,
+                fontWeight: 500,
+              }}
+            >
+              Click to play
+            </Typography>
           </motion.div>
         )}
       </AnimatePresence>
@@ -634,6 +760,102 @@ function RashadContent() {
             </Grid>
           </Card>
         </Grid>
+
+        {/* Completed Agents Videos */}
+        <Grid item xs={12}>
+          <Typography variant="h6" sx={{ ...sectionTitle, mt: 1 }}>
+            Completion Agents
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              <Card
+                sx={{
+                  ...innerCard,
+                  p: 0,
+                  overflow: "hidden",
+                  minHeight: "500px",
+                }}
+              >
+                <Box
+                  sx={{
+                    px: 2,
+                    py: 1.5,
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                >
+                  <Typography variant="subtitle2" fontWeight={700}>
+                    Extraction Agent
+                  </Typography>
+                </Box>
+                <VideoPlayer
+                  src="/videos/Extraction agent.mp4"
+                  title="Extraction Agent Demo"
+                />
+                <Box sx={{ px: 2, py: 1.5 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.6,
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    Converts unstructured RFP files (PDF, Word) into structured
+                    data — extracting project overview, scope, deliverables,
+                    timelines, team requirements, and evaluation criteria.
+                  </Typography>
+                </Box>
+              </Card>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Card
+                sx={{
+                  ...innerCard,
+                  p: 0,
+                  overflow: "hidden",
+                  minHeight: "500px",
+                }}
+              >
+                <Box
+                  sx={{
+                    px: 2,
+                    py: 1.5,
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                >
+                  <Typography variant="subtitle2" fontWeight={700}>
+                    Summary & Q&A Agent
+                  </Typography>
+                </Box>
+                <VideoPlayer
+                  src="/videos/Summary  Q&A agent.mp4"
+                  title="Summary & Q&A Agent Demo"
+                />
+                <Box sx={{ px: 2, py: 1.5 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.6,
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    Creates structured summaries of projects from extracted data
+                    and answers questions to help users understand the RFP and
+                    project requirements in detail.
+                  </Typography>
+                </Box>
+              </Card>
+            </Grid>
+          </Grid>
+        </Grid>
+
         <Grid item xs={12}>
           <Card
             sx={{
