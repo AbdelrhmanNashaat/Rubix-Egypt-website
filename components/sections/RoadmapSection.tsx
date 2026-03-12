@@ -197,24 +197,29 @@ function GanttBar({
   months,
   color,
   delay,
+  compact = false,
 }: {
   months: number[];
   color: string;
   delay: number;
+  compact?: boolean;
 }) {
+  const barHeight = compact ? 22 : 28;
+  const fontSize = compact ? "0.55rem" : "0.65rem";
   return (
     <Box
       sx={{
         display: "grid",
         gridTemplateColumns: "repeat(13, 1fr)",
-        gap: "2px",
+        gap: compact ? "1px" : "2px",
         width: "100%",
+        minWidth: compact ? 260 : 0,
       }}
     >
       {MONTHS.map((m) => {
         const active = months.includes(m);
         return (
-          <Box key={m} sx={{ position: "relative" }}>
+          <Box key={m} sx={{ position: "relative", minWidth: compact ? 18 : 0 }}>
             {active ? (
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
@@ -226,9 +231,9 @@ function GanttBar({
                   ease: "easeOut",
                 }}
                 style={{
-                  height: 28,
+                  height: barHeight,
                   backgroundColor: color,
-                  borderRadius: 4,
+                  borderRadius: compact ? 3 : 4,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -237,7 +242,7 @@ function GanttBar({
                 <span
                   style={{
                     color: "#fff",
-                    fontSize: "0.65rem",
+                    fontSize,
                     fontWeight: 800,
                     lineHeight: 1,
                     userSelect: "none",
@@ -249,9 +254,9 @@ function GanttBar({
             ) : (
               <Box
                 sx={{
-                  height: 28,
+                  height: barHeight,
                   bgcolor: "rgba(255,255,255,0.04)",
-                  borderRadius: "4px",
+                  borderRadius: compact ? "3px" : "4px",
                   border: "1px dashed rgba(255,255,255,0.06)",
                 }}
               />
@@ -266,6 +271,7 @@ function GanttBar({
 export default function RoadmapSection() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
@@ -284,7 +290,7 @@ export default function RoadmapSection() {
           viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
         >
-          <Box sx={{ px: { xs: 2, sm: 3 } }}>
+          <Box sx={{ px: { xs: 1.5, sm: 2, md: 3 } }}>
             <Typography
               variant="overline"
               sx={{
@@ -327,7 +333,7 @@ export default function RoadmapSection() {
         {/* Phases with inline month headers */}
         <Box
           sx={{
-            px: { xs: 2, sm: 3 },
+            px: { xs: 1.5, sm: 2, md: 3 },
             pb: 2,
           }}
         >
@@ -341,8 +347,8 @@ export default function RoadmapSection() {
             >
               <Box
                 sx={{
-                  mb: 2,
-                  borderRadius: 2,
+                  mb: { xs: 1.5, sm: 2 },
+                  borderRadius: { xs: 1.5, sm: 2 },
                   border: "1px solid rgba(255,255,255,0.06)",
                   bgcolor: "rgba(255,255,255,0.02)",
                   overflow: "hidden",
@@ -352,19 +358,20 @@ export default function RoadmapSection() {
                 <Box
                   sx={{
                     display: "flex",
+                    flexWrap: "wrap",
                     alignItems: "center",
-                    gap: 1.5,
-                    px: 2,
-                    py: 1.5,
+                    gap: { xs: 1, sm: 1.5 },
+                    px: { xs: 1.5, sm: 2 },
+                    py: { xs: 1.25, sm: 1.5 },
                     borderBottom: "1px solid rgba(255,255,255,0.06)",
                     bgcolor: phase.bgColor,
                   }}
                 >
                   <Box
                     sx={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: "8px",
+                      width: { xs: 28, sm: 32 },
+                      height: { xs: 28, sm: 32 },
+                      borderRadius: { xs: "6px", sm: "8px" },
                       bgcolor: phase.color,
                       display: "flex",
                       alignItems: "center",
@@ -376,7 +383,7 @@ export default function RoadmapSection() {
                       sx={{
                         color: "#fff",
                         fontWeight: 800,
-                        fontSize: "0.75rem",
+                        fontSize: { xs: "0.65rem", sm: "0.75rem" },
                       }}
                     >
                       {phase.id}
@@ -385,7 +392,11 @@ export default function RoadmapSection() {
                   <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Typography
                       variant="subtitle2"
-                      sx={{ fontWeight: 700, lineHeight: 1.3 }}
+                      sx={{
+                        fontWeight: 700,
+                        lineHeight: 1.3,
+                        fontSize: { xs: "0.8rem", sm: "inherit" },
+                      }}
                     >
                       {phase.label}
                     </Typography>
@@ -395,8 +406,8 @@ export default function RoadmapSection() {
                     size="small"
                     sx={{
                       fontWeight: 600,
-                      fontSize: "0.65rem",
-                      height: 22,
+                      fontSize: { xs: "0.6rem", sm: "0.65rem" },
+                      height: { xs: 20, sm: 22 },
                       bgcolor: priorityChip[phase.priority]?.bg,
                       color: priorityChip[phase.priority]?.color,
                       flexShrink: 0,
@@ -408,24 +419,30 @@ export default function RoadmapSection() {
                 <Box
                   sx={{
                     overflowX: "auto",
-                    "&::-webkit-scrollbar": { height: 4 },
+                    WebkitOverflowScrolling: "touch",
+                    "&::-webkit-scrollbar": { height: 6 },
                     "&::-webkit-scrollbar-thumb": {
-                      bgcolor: "rgba(255,255,255,0.12)",
-                      borderRadius: 2,
+                      bgcolor: "rgba(255,255,255,0.15)",
+                      borderRadius: 3,
                     },
                   }}
                 >
-                  <Box sx={{ minWidth: isMobile ? 880 : "auto" }}>
+                  <Box
+                    sx={{
+                      minWidth: isXs ? 320 : isMobile ? 700 : "auto",
+                    }}
+                  >
                     {/* Month labels row inside the phase */}
                     <Box
                       sx={{
                         display: "grid",
                         gridTemplateColumns: {
-                          xs: "180px 1fr",
+                          xs: "1fr",
+                          sm: "140px 1fr",
                           md: "260px 1fr",
                         },
-                        gap: 2,
-                        px: 2,
+                        gap: { xs: 0.5, sm: 2 },
+                        px: { xs: 1.5, sm: 2 },
                         pt: 1,
                         pb: 0.5,
                         borderBottom: "1px solid rgba(255,255,255,0.04)",
@@ -436,7 +453,7 @@ export default function RoadmapSection() {
                         sx={{
                           fontWeight: 600,
                           color: "text.secondary",
-                          fontSize: "0.65rem",
+                          fontSize: { xs: "0.6rem", sm: "0.65rem" },
                           textTransform: "uppercase",
                           letterSpacing: 1,
                         }}
@@ -447,7 +464,8 @@ export default function RoadmapSection() {
                         sx={{
                           display: "grid",
                           gridTemplateColumns: "repeat(13, 1fr)",
-                          gap: "2px",
+                          gap: { xs: "1px", sm: "2px" },
+                          minWidth: isXs ? 260 : 0,
                         }}
                       >
                         {MONTH_LABELS.map((m) => (
@@ -458,7 +476,7 @@ export default function RoadmapSection() {
                               textAlign: "center",
                               fontWeight: 600,
                               color: "text.secondary",
-                              fontSize: "0.65rem",
+                              fontSize: { xs: "0.55rem", sm: "0.65rem" },
                             }}
                           >
                             {m}
@@ -474,13 +492,14 @@ export default function RoadmapSection() {
                         sx={{
                           display: "grid",
                           gridTemplateColumns: {
-                            xs: "180px 1fr",
+                            xs: "1fr",
+                            sm: "140px 1fr",
                             md: "260px 1fr",
                           },
-                          gap: 2,
-                          px: 2,
-                          py: 1.5,
-                          alignItems: "center",
+                          gap: { xs: 1, sm: 2 },
+                          px: { xs: 1.5, sm: 2 },
+                          py: { xs: 1.25, sm: 1.5 },
+                          alignItems: { xs: "flex-start", sm: "center" },
                           borderBottom:
                             itemIdx < phase.items.length - 1
                               ? "1px solid rgba(255,255,255,0.04)"
@@ -489,13 +508,13 @@ export default function RoadmapSection() {
                           transition: "background 0.2s",
                         }}
                       >
-                        <Box>
+                        <Box sx={{ minWidth: 0 }}>
                           <Typography
                             variant="body2"
                             sx={{
                               fontWeight: 700,
                               color: phase.color,
-                              fontSize: "0.85rem",
+                              fontSize: { xs: "0.8rem", sm: "0.85rem" },
                               mb: 0.25,
                             }}
                           >
@@ -507,20 +526,34 @@ export default function RoadmapSection() {
                               color: "text.secondary",
                               lineHeight: 1.4,
                               display: "-webkit-box",
-                              WebkitLineClamp: 2,
+                              WebkitLineClamp: { xs: 2, sm: 2 },
                               WebkitBoxOrient: "vertical",
                               overflow: "hidden",
-                              fontSize: "0.7rem",
+                              fontSize: { xs: "0.65rem", sm: "0.7rem" },
                             }}
                           >
                             {item.objective}
                           </Typography>
                         </Box>
-                        <GanttBar
-                          months={item.months}
-                          color={phase.color}
-                          delay={phaseIdx * 0.1 + itemIdx * 0.05}
-                        />
+                        <Box
+                          sx={{
+                            overflowX: "auto",
+                            minWidth: 0,
+                            WebkitOverflowScrolling: "touch",
+                            ...(isXs && {
+                              mx: -1.5,
+                              px: 1.5,
+                              "&::-webkit-scrollbar": { height: 4 },
+                            }),
+                          }}
+                        >
+                          <GanttBar
+                            months={item.months}
+                            color={phase.color}
+                            delay={phaseIdx * 0.1 + itemIdx * 0.05}
+                            compact={isXs}
+                          />
+                        </Box>
                       </Box>
                     ))}
                   </Box>
@@ -541,9 +574,9 @@ export default function RoadmapSection() {
             sx={{
               display: "flex",
               flexWrap: "wrap",
-              gap: 2,
-              mt: 3,
-              px: { xs: 2, sm: 3 },
+              gap: { xs: 1.5, sm: 2 },
+              mt: { xs: 2, sm: 3 },
+              px: { xs: 1.5, sm: 2, md: 3 },
               justifyContent: { xs: "flex-start", md: "center" },
             }}
           >
@@ -562,7 +595,11 @@ export default function RoadmapSection() {
                 />
                 <Typography
                   variant="caption"
-                  sx={{ color: "text.secondary", fontWeight: 500 }}
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 500,
+                    fontSize: { xs: "0.7rem", sm: "inherit" },
+                  }}
                 >
                   {label} Priority
                 </Typography>

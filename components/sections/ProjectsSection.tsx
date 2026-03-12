@@ -249,14 +249,19 @@ function RashadContent() {
   return (
     <>
       <Card sx={{ ...card, p: 3, mb: 3 }}>
+        <Typography sx={{ ...bodyText, fontSize: "0.9375rem", mb: 2 }}>
+          Rashad is Rubix’s flagship internal intelligence platform designed to
+          support the consulting lifecycle end to end. It is being developed to
+          help teams work faster, think sharper, and deliver more consistently
+          by combining AI agents, structured knowledge, workflow automation, and
+          decision support into one connected system.
+        </Typography>
         <Typography sx={{ ...bodyText, fontSize: "0.9375rem" }}>
-          Rashad Engine is Rubix&apos;s AI platform that changes how consulting
-          proposals are made and projects get started. It handles everything
-          from reading RFPs and creating proposals automatically to assigning
-          team members and starting projects. Rashad makes the process faster,
-          consistent, and more organized. Using AI, proven methods, and smart
-          workflows, it creates professional proposals, stores knowledge, learns
-          from past projects, and helps teams work smarter.
+          Rather than functioning as a single-use proposal tool, Rashad is
+          intended to become an intelligent operating layer for consulting work.
+          It will support opportunity assessment, RFP understanding, knowledge
+          retrieval, content generation, delivery acceleration, project
+          mobilization, and institutional learning across Rubix.
         </Typography>
       </Card>
 
@@ -267,38 +272,38 @@ function RashadContent() {
         {[
           {
             n: 1,
-            title: "RFP Input or Creation",
-            text: "Users provide an RFP file or fill in required information: basic project info, overview, scope of work, team requirements, evaluation criteria, timelines.",
+            title: "Opportunity / RFP Intake",
+            text: "Captures opportunity inputs, client requirements, and project parameters from documents or structured forms",
           },
           {
             n: 2,
-            title: "RFP Summarization",
-            text: "Rashad generates a concise summary of the project and requirements for quick understanding.",
+            title: "Requirement Intelligence",
+            text: "Extracts, structures, and interprets scope, deliverables, timelines, evaluation criteria, and resource implications",
           },
           {
             n: 3,
-            title: "Team Planning & Budget Check",
-            text: "Identifies available team members, assigns roles and hours within budget, highlights any missing required roles.",
+            title: "Knowledge Retrieval & Context Build",
+            text: "Pulls from Rubix templates, prior work, methodologies, credentials, and reusable content to build a smarter working base",
           },
           {
             n: 4,
-            title: "Proposal Creation",
-            text: "Automatically generates technical and financial proposals; offers combined or separate files (PDF/PowerPoint).",
+            title: "Proposal & Response Enablement",
+            text: "Supports the creation of technical responses, pricing logic, presentation content, and submission-ready materials.",
           },
           {
             n: 5,
-            title: "Proposal Submission & Tracking",
-            text: "Maintains proposal history and acceptance status; tracks which proposals are accepted and ready for mobilization.",
+            title: "Delivery Readiness & Mobilization",
+            text: "Helps teams align roles, resources, priorities, and startup requirements once an opportunity moves forward.",
           },
           {
             n: 6,
-            title: "Project Mobilization",
-            text: "Accepted proposals move to mobilization; schedules team, assigns resources, prepares the project for start.",
+            title: "Project Intelligence Support",
+            text: "Provides consultants with agent-based assistance throughout execution to improve speed, structure, and quality.",
           },
           {
             n: 7,
-            title: "Transfer Knowledge",
-            text: "Captures lessons learned, templates, and structured processes; preserves knowledge for future proposals.",
+            title: "Learning & Knowledge Reinforcement",
+            text: "Learning & Knowledge Reinforcement",
           },
         ].map((s) => (
           <Grid item xs={12} sm={6} key={s.n}>
@@ -326,41 +331,51 @@ function RashadContent() {
         AI Models Overview
       </Typography>
       <Typography sx={{ ...bodyText, mb: 3 }}>
-        Rashad uses four main AI models to make proposal creation fast,
-        accurate, and professional. Each model has a specific role in a
-        controlled workflow.
+        Rashad uses 8 main AI models to make proposal creation fast, accurate,
+        and professional. Each model has a specific role in a controlled
+        workflow.
       </Typography>
       <Grid container spacing={2} sx={{ mb: 4 }}>
         {[
           {
             icon: DatasetIcon,
-            title: "1. Pre-processing",
-            desc: "Converts unstructured RFP files (PDF, Word) into structured data: project overview, scope of work, deliverables, timelines, team requirements, evaluation criteria.",
+            title: "1. Document Intelligence Engine",
+            desc: "Transforms unstructured inputs into structured project intelligence.",
           },
           {
             icon: SummarizeIcon,
-            title: "2. Summary Agent",
-            desc: "Creates a clear, structured summary of the project from extracted data and user inputs. Directly used by the Proposal Model.",
+            title: "2. Summary & Insight Agent",
+            desc: "Creates concise and decision-ready understanding of opportunities and requirements.",
           },
           {
             icon: QuestionAnswerIcon,
-            title: "3. Q&A Agent",
-            desc: "Helps users understand the RFP and summary by answering questions. For understanding only — does not feed into proposals.",
+            title: "3. Knowledge Agent",
+            desc: "Connects users to relevant Rubix content, past work, and reusable strategic assets.",
           },
           {
             icon: DescriptionIcon,
-            title: "4. Proposal Model",
-            desc: "Generates professional technical and financial proposals (Word/PDF) using the summary, optional user notes, and Rashad's templates.",
+            title: "4. Proposal Generation Agent",
+            desc: "Supports the creation of structured, branded, and high-quality response documents.",
           },
           {
             icon: SlideshowIcon,
             title: "5. Presentation Agent",
-            desc: "Transforms proposals into polished, branded PowerPoint presentations with consistent layout and structured slides.",
+            desc: "Transforms approved content into polished client-facing presentations.",
           },
           {
             icon: RequestQuoteIcon,
-            title: "6. RFP Creator",
-            desc: "Generates Request for Proposal (RFP) documents even when no template is provided. Collects project requirements directly from the user through an interactive form, processes the data, generates a structured RFP, and displays it ready for download or sharing.",
+            title: "6. Delivery Support Agents",
+            desc: "Assists consultants during mobilization and project execution with guided intelligence and task acceleration.",
+          },
+          {
+            icon: SummarizeIcon,
+            title: "7. Learning Engine",
+            desc: "Captures patterns, feedback, and reusable assets to improve future output quality over time.",
+          },
+          {
+            icon: DescriptionIcon,
+            title: "8. Professional Profile Engine",
+            desc: "Converts CVs into structured and visually organized professional summaries.",
           },
         ].map((m) => (
           <Grid item xs={12} sm={6} key={m.title}>
@@ -2057,7 +2072,7 @@ export default function ProjectsSection() {
             <RocketLaunchIcon sx={{ color: "primary.main", fontSize: 24 }} />
           }
           title="Rashad Project"
-          subtitle="AI-powered consulting automation — from RFP intake to project mobilization"
+          subtitle="Rubix’s AI-powered consulting intelligence system"
           chips={[
             {
               label: "In Development",
