@@ -78,7 +78,7 @@ const team = [
     name: "Aladdin Khaled",
     role: "UI/UX Designer",
     desc: "Designs interfaces, prototypes, and interaction flows that improve usability and product clarity.",
-    image: null as string | null,
+    image: "/aladdin.png",
   },
 ];
 
@@ -187,9 +187,8 @@ export default function TeamSection() {
                     <Box
                       sx={{
                         position: "relative",
-                        width: { xs: 100, sm: 120 },
-                        height: { xs: 100, sm: 120 },
-                        overflow: "hidden",
+                        width: { xs: 100, sm: 150 },
+                        height: { xs: 100, sm: 150 },
                         mb: 2,
                         flexShrink: 0,
                         boxShadow: `0 0 20px $#BE0E5B20`,
@@ -201,7 +200,7 @@ export default function TeamSection() {
                           alt={member.name}
                           fill
                           style={{ objectFit: "cover" }}
-                          sizes="150px"
+                          sizes="160px"
                         />
                       ) : (
                         <Box

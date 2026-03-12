@@ -687,7 +687,7 @@ function WorcareContent() {
           variant="subtitle2"
           sx={{ color: "primary.light", mb: 1, fontWeight: 700 }}
         >
-          WorkCare – Supporting Your People, Elevating Your Business
+          WorCare – Supporting Your People, Elevating Your Business
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 2, lineHeight: 1.8 }}>
           WorCare is a digital wellbeing and workplace engagement platform being
@@ -704,7 +704,7 @@ function WorcareContent() {
       </Card>
 
       <Typography variant="h6" sx={{ ...sectionTitle }}>
-        Key Dimensions of WorkCare
+        Key Dimensions of WorCare
       </Typography>
       <Grid container spacing={2} sx={{ mb: 4 }}>
         {[
@@ -2091,7 +2091,7 @@ export default function ProjectsSection() {
           id="worcare"
           icon={<FavoriteIcon sx={{ color: "primary.main", fontSize: 24 }} />}
           title="Worcare Project"
-          subtitle="WorkCare boosts employee well-being and engagement"
+          subtitle="WorCare boosts employee well-being and engagement"
           chips={[
             {
               label: "System Design Phase",
