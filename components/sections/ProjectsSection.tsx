@@ -306,7 +306,7 @@ function VideoPlayer({ src, title }: { src: string; title: string }) {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "radial-gradient(ellipse 0% 100% at 20% 20%, rgba(190,14,91,0.25) 0%, rgba(44, 17, 44, 0.95) 70%)",
+                  "radial-gradient(ellipse 0% 100% at 20% 20%, rgba(139, 123, 130, 0.288) 0%, rgba(241, 234, 241, 0) 70%)",
               }}
             />
 
@@ -318,7 +318,7 @@ function VideoPlayer({ src, title }: { src: string; title: string }) {
                 width: { xs: 56, sm: 72 },
                 height: { xs: 56, sm: 72 },
                 borderRadius: "50%",
-                bgcolor: "rgba(255,255,255,0.12)",
+                bgcolor: "rgba(143, 67, 100, 0.35)",
                 backdropFilter: "blur(12px)",
                 border: "2px solid rgba(255,255,255,0.2)",
                 display: "flex",
