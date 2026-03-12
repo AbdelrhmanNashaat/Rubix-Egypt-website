@@ -159,17 +159,6 @@ export default function Navbar() {
                 {link.label}
               </Button>
             ))}
-            <Button
-              variant="contained"
-              href="#about"
-              sx={{
-                ml: 1,
-                bgcolor: "primary.main",
-                "&:hover": { bgcolor: "primary.dark" },
-              }}
-            >
-              Get In Touch
-            </Button>
           </Box>
 
           <IconButton

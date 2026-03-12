@@ -57,7 +57,7 @@ const team = [
     name: "Youssef Khaled",
     role: "Backend Engineer",
     desc: "Develops backend architecture, APIs, integrations, and business logic for core platforms.",
-    image: "/yossif khaled.jpeg",
+    image: "/youssef khaled.jpeg",
   },
   {
     initials: "AF",
