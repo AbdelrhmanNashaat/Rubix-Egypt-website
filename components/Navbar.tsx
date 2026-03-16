@@ -31,13 +31,6 @@ const navLinks = [
 const projectLinks = [
   { label: "Rashad Project", href: "#rashad" },
   { label: "Worcare Project", href: "#worcare" },
-  { label: "DiagnifyAI", href: "#diagnifyai" },
-  { label: "SparkThon", href: "#sparkthon" },
-  { label: "YANA", href: "#yana" },
-  { label: "iVision", href: "#ivision" },
-  { label: "Traviom", href: "#traviom" },
-  { label: "BIMLens", href: "#bimlens" },
-  { label: "Sulhafa", href: "#sulhafa" },
 ];
 
 export default function Navbar() {
