@@ -3746,94 +3746,6 @@ export default function ProjectsSection() {
         </ProjectAccordion>
 
         <ProjectAccordion
-          id="rashad-consulting-agents"
-          icon={<HubIcon sx={{ color: "primary.main", fontSize: 24 }} />}
-          title="Rashad Consulting Agents"
-          subtitle="Define requirements and begin development of an AI-enabled consulting support layer"
-          chips={[
-            {
-              label: "Planned",
-              bg: "rgba(120,144,156,0.2)",
-              color: "#90a4ae",
-            },
-            {
-              label: "Strategic Activation",
-              bg: "rgba(0,137,123,0.2)",
-              color: "#00897b",
-            },
-            {
-              label: "M2–M5",
-              bg: "rgba(255,255,255,0.08)",
-              color: "text.secondary",
-            },
-          ]}
-          open={open === "rashad-consulting-agents"}
-          onToggle={() => toggle("rashad-consulting-agents")}
-        >
-          <RoadmapProjectContent objective="Define requirements and begin development of an AI-enabled consulting support layer that extends Rashad's capabilities into day-to-day consulting workflows." />
-        </ProjectAccordion>
-
-        <ProjectAccordion
-          id="rubix-excavation-usa"
-          icon={
-            <FlightTakeoffIcon sx={{ color: "primary.main", fontSize: 24 }} />
-          }
-          title="Rubix Excavation Office – USA"
-          subtitle="Activate sourcing channels, ecosystem relationships, and opportunity scouting in the US market"
-          chips={[
-            {
-              label: "Planned",
-              bg: "rgba(120,144,156,0.2)",
-              color: "#90a4ae",
-            },
-            {
-              label: "Strategic Activation",
-              bg: "rgba(0,137,123,0.2)",
-              color: "#00897b",
-            },
-            {
-              label: "M2–M5",
-              bg: "rgba(255,255,255,0.08)",
-              color: "text.secondary",
-            },
-          ]}
-          open={open === "rubix-excavation-usa"}
-          onToggle={() => toggle("rubix-excavation-usa")}
-        >
-          <RoadmapProjectContent objective="Activate sourcing channels, ecosystem relationships, and opportunity scouting in the US market to create a bridge for Rubix into North American opportunities." />
-        </ProjectAccordion>
-
-        <ProjectAccordion
-          id="sparkthon-operating-model"
-          icon={
-            <RocketLaunchIcon sx={{ color: "primary.main", fontSize: 24 }} />
-          }
-          title="SparkThon Operating Model"
-          subtitle="Reset the model, complete Cohort 1 closure logic, and reposition SparkThon as a hybrid commercial offering"
-          chips={[
-            {
-              label: "Planned",
-              bg: "rgba(120,144,156,0.2)",
-              color: "#90a4ae",
-            },
-            {
-              label: "Venture Platform Launch",
-              bg: "rgba(21,101,192,0.2)",
-              color: "#1565c0",
-            },
-            {
-              label: "M3–M6",
-              bg: "rgba(255,255,255,0.08)",
-              color: "text.secondary",
-            },
-          ]}
-          open={open === "sparkthon-operating-model"}
-          onToggle={() => toggle("sparkthon-operating-model")}
-        >
-          <RoadmapProjectContent objective="Reset the model, complete Cohort 1 closure logic, and reposition SparkThon as a hybrid commercial offering that combines incubation with commercial venture support." />
-        </ProjectAccordion>
-
-        <ProjectAccordion
           id="sparkthon-platform"
           icon={<ViewInArIcon sx={{ color: "primary.main", fontSize: 24 }} />}
           title="SparkThon Platform"
@@ -3859,36 +3771,6 @@ export default function ProjectsSection() {
           onToggle={() => toggle("sparkthon-platform")}
         >
           <RoadmapProjectContent objective="Build and launch a basic digital platform in Q2 to manage startup applications, incubation, and tracking—enabling SparkThon to scale operations and pipeline." />
-        </ProjectAccordion>
-
-        <ProjectAccordion
-          id="us-ecosystem-roadshow"
-          icon={
-            <FlightTakeoffIcon sx={{ color: "primary.main", fontSize: 24 }} />
-          }
-          title="US Ecosystem Roadshow"
-          subtitle="Prepare market-entry and ecosystem outreach to create a sustainable pipeline of startup applications"
-          chips={[
-            {
-              label: "Planned",
-              bg: "rgba(120,144,156,0.2)",
-              color: "#90a4ae",
-            },
-            {
-              label: "Venture Platform Launch",
-              bg: "rgba(21,101,192,0.2)",
-              color: "#1565c0",
-            },
-            {
-              label: "M3–M6",
-              bg: "rgba(255,255,255,0.08)",
-              color: "text.secondary",
-            },
-          ]}
-          open={open === "us-ecosystem-roadshow"}
-          onToggle={() => toggle("us-ecosystem-roadshow")}
-        >
-          <RoadmapProjectContent objective="Prepare market-entry and ecosystem outreach to create a sustainable pipeline of startup applications and partnerships in the US market." />
         </ProjectAccordion>
 
         <ProjectAccordion
@@ -3921,34 +3803,6 @@ export default function ProjectsSection() {
           onToggle={() => toggle("sulhafa")}
         >
           <RoadmapProjectContent objective="Maintain stability, close development gaps, and support controlled regional growth for Sulhafa across the roadmap horizon." />
-        </ProjectAccordion>
-
-        <ProjectAccordion
-          id="usa-sourced-opportunities"
-          icon={<VisibilityIcon sx={{ color: "primary.main", fontSize: 24 }} />}
-          title="USA-Sourced Opportunities"
-          subtitle="Screen, qualify, and selectively convert sourced MVPs or services into partnership or commercialization candidates"
-          chips={[
-            {
-              label: "Planned",
-              bg: "rgba(120,144,156,0.2)",
-              color: "#90a4ae",
-            },
-            {
-              label: "Pipeline Conversion",
-              bg: "rgba(120,144,156,0.2)",
-              color: "#78909c",
-            },
-            {
-              label: "M3–M12",
-              bg: "rgba(255,255,255,0.08)",
-              color: "text.secondary",
-            },
-          ]}
-          open={open === "usa-sourced-opportunities"}
-          onToggle={() => toggle("usa-sourced-opportunities")}
-        >
-          <RoadmapProjectContent objective="Screen, qualify, and selectively convert sourced MVPs or services from the US pipeline into partnership or commercialization candidates for Rubix." />
         </ProjectAccordion>
 
         <Typography
