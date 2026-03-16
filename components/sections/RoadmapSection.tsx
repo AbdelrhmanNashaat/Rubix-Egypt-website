@@ -116,50 +116,9 @@ const phases: Phase[] = [
       },
     ],
   },
+
   {
     id: "04",
-    label: "Optimization & Readiness",
-    color: "#6a1b9a",
-    bgColor: "rgba(106,27,154,0.12)",
-    priority: "Medium",
-    items: [
-      {
-        product: "YANA",
-        objective:
-          "Assess product maturity, refine proposition, and prepare for selective commercialization",
-        months: [6, 7, 8],
-      },
-      {
-        product: "iVision",
-        objective:
-          "Validate readiness, strengthen use case definition, and improve go-to-market preparedness",
-        months: [6, 7, 8],
-      },
-    ],
-  },
-  {
-    id: "05",
-    label: "Expansion Build",
-    color: "#ef6c00",
-    bgColor: "rgba(239,108,0,0.12)",
-    priority: "Medium",
-    items: [
-      {
-        product: "Traviom",
-        objective:
-          "Complete further development and strengthen commercial readiness for future market activation",
-        months: [7, 8, 9, 10, 11, 12],
-      },
-      {
-        product: "BIMLens Expansion Track",
-        objective:
-          "Identify and activate market opportunities beyond KSA in coordination with Rubix Studio",
-        months: [7, 8, 9, 10, 11, 12],
-      },
-    ],
-  },
-  {
-    id: "06",
     label: "Ongoing Maintenance & Pipeline Conversion",
     color: "#78909c",
     bgColor: "rgba(120,144,156,0.12)",
@@ -219,7 +178,10 @@ function GanttBar({
       {MONTHS.map((m) => {
         const active = months.includes(m);
         return (
-          <Box key={m} sx={{ position: "relative", minWidth: compact ? 18 : 0 }}>
+          <Box
+            key={m}
+            sx={{ position: "relative", minWidth: compact ? 18 : 0 }}
+          >
             {active ? (
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}

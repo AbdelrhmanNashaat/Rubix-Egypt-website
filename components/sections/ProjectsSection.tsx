@@ -625,107 +625,276 @@ function RashadContent() {
         Rashad Development Phases
       </Typography>
       <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-        A structured 7-phase development roadmap building Rashad from a
-        document intelligence engine into a full consulting lifecycle platform.
+        A structured 7-phase development roadmap building Rashad from a document
+        intelligence engine into a full consulting lifecycle platform.
       </Typography>
 
       <Grid container spacing={3}>
         {/* ── PHASE 1 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 1" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 1"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 Document Intelligence &amp; Analysis
               </Typography>
-              <Chip label="In Progress" size="small" sx={{ bgcolor: "rgba(255,193,7,0.2)", color: "#ffc107", fontWeight: 600 }} />
+              <Chip
+                label="In Progress"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(255,193,7,0.2)",
+                  color: "#ffc107",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated completion:
+              </Box>{" "}
+              19/3
+            </Typography>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
               Foundation Layer – Making sense of complex documents automatically
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Build the core intelligence layer that reads, understands, and structures unstructured project documents.
-              This phase establishes Rashad&apos;s ability to intelligently process RFPs and project briefs from any
-              format: PDF, Word, scanned documents, or direct data input. The system automatically extracts critical
-              information, organizes it into structured actionable data, generates comprehensive summaries, and provides
-              an interactive Q&amp;A agent for deep exploration before moving to proposal generation.
+              Build the core intelligence layer that reads, understands, and
+              structures unstructured project documents. This phase establishes
+              Rashad&apos;s ability to intelligently process RFPs and project
+              briefs from any format: PDF, Word, scanned documents, or direct
+              data input. The system automatically extracts critical
+              information, organizes it into structured actionable data,
+              generates comprehensive summaries, and provides an interactive
+              Q&amp;A agent for deep exploration before moving to proposal
+              generation.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={75} status="In Progress" />
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Agents Delivered
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { title: "Document Intelligence Engine", desc: "Reads and structures unstructured RFP files and user-provided data" },
-                { title: "Summary & Insight Agent", desc: "Generates project summaries and identifies key insights, risks, and requirements" },
-                { title: "Q&A Agent", desc: "Answers any question about the RFP or extracted summary, enabling deep exploration and clarification" },
+                {
+                  title: "Document Intelligence Engine",
+                  desc: "Reads and structures unstructured RFP files and user-provided data",
+                },
+                {
+                  title: "Summary & Insight Agent",
+                  desc: "Generates project summaries and identifies key insights, risks, and requirements",
+                },
+                {
+                  title: "Q&A Agent",
+                  desc: "Answers any question about the RFP or extracted summary, enabling deep exploration and clarification",
+                },
               ].map((a) => (
                 <Grid item xs={12} sm={4} key={a.title}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="subtitle2" fontWeight={700} sx={{ color: "primary.light", mb: 0.5 }}>{a.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{a.desc}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={700}
+                      sx={{ color: "primary.light", mb: 0.5 }}
+                    >
+                      {a.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {a.desc}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Document upload interface, processing indicators, data extraction review screens" },
-                { label: "Frontend", text: "File upload components, real-time processing status, structured data display" },
-                { label: "Backend", text: "Document parsing engine, AI extraction pipeline, data structuring service, Q&A API" },
+                {
+                  label: "UI/UX",
+                  text: "Document upload interface, processing indicators, data extraction review screens",
+                },
+                {
+                  label: "Frontend",
+                  text: "File upload components, real-time processing status, structured data display",
+                },
+                {
+                  label: "Backend",
+                  text: "Document parsing engine, AI extraction pipeline, data structuring service, Q&A API",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>UI/UX Team</Typography>
-                <Typography variant="body2" sx={{ mb: 0.5 }}>Phase 1 Design</Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    display: "block",
+                    mb: 1,
+                  }}
+                >
+                  UI/UX Team
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 0.5 }}>
+                  Phase 1 Design
+                </Typography>
                 <AnimatedProgressBar value={100} status="Completed" />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>Front-End Team</Typography>
-                <Typography variant="body2" sx={{ mb: 0.5 }}>Phase 1 Implementation</Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    display: "block",
+                    mb: 1,
+                  }}
+                >
+                  Front-End Team
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 0.5 }}>
+                  Phase 1 Implementation
+                </Typography>
                 <AnimatedProgressBar value={50} status="In Progress" />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>Back-End Team</Typography>
-                <Typography variant="body2" sx={{ mb: 0.5 }}>Auth APIs</Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    display: "block",
+                    mb: 1,
+                  }}
+                >
+                  Back-End Team
+                </Typography>
+                <Typography variant="body2" sx={{ mb: 0.5 }}>
+                  Auth APIs
+                </Typography>
                 <AnimatedProgressBar value={50} status="In Progress" />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-                <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>AI Team</Typography>
-                <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.secondary",
+                    fontWeight: 600,
+                    display: "block",
+                    mb: 1,
+                  }}
+                >
+                  AI Team
+                </Typography>
+                <Box
+                  sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}
+                >
                   <Box>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>Summary Agent</Typography>
+                    <Typography variant="body2" sx={{ mb: 0.5 }}>
+                      Summary Agent
+                    </Typography>
                     <AnimatedProgressBar value={100} status="Completed" />
                   </Box>
                   <Box>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>Q&A Agent</Typography>
+                    <Typography variant="body2" sx={{ mb: 0.5 }}>
+                      Q&A Agent
+                    </Typography>
                     <AnimatedProgressBar value={100} status="Completed" />
                   </Box>
                   <Box>
-                    <Typography variant="body2" sx={{ mb: 0.5 }}>Extraction Agent</Typography>
+                    <Typography variant="body2" sx={{ mb: 0.5 }}>
+                      Extraction Agent
+                    </Typography>
                     <AnimatedProgressBar value={100} status="Completed" />
                   </Box>
                 </Box>
@@ -742,28 +911,92 @@ function RashadContent() {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Card sx={{ ...innerCard, p: 0, overflow: "hidden" }}>
-                <Box sx={{ px: 2, py: 1.5, borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 1 }}>
-                  <Chip label="Completed" size="small" sx={{ bgcolor: "rgba(76,175,80,0.2)", color: "#4caf50", fontWeight: 600, fontSize: "0.7rem" }} />
-                  <Typography variant="subtitle2" fontWeight={700}>Extraction Agent</Typography>
+                <Box
+                  sx={{
+                    px: 2,
+                    py: 1.5,
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                >
+                  <Chip
+                    label="Completed"
+                    size="small"
+                    sx={{
+                      bgcolor: "rgba(76,175,80,0.2)",
+                      color: "#4caf50",
+                      fontWeight: 600,
+                      fontSize: "0.7rem",
+                    }}
+                  />
+                  <Typography variant="subtitle2" fontWeight={700}>
+                    Extraction Agent
+                  </Typography>
                 </Box>
-                <VideoPlayer src="/videos/Extraction agent.mp4" title="Extraction Agent Demo" />
+                <VideoPlayer
+                  src="/videos/Extraction agent.mp4"
+                  title="Extraction Agent Demo"
+                />
                 <Box sx={{ px: 2, py: 1.5 }}>
-                  <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.6, fontSize: "0.85rem" }}>
-                    Converts unstructured RFP files (PDF, Word) into structured data — extracting project overview, scope, deliverables, timelines, team requirements, and evaluation criteria.
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.6,
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    Converts unstructured RFP files (PDF, Word) into structured
+                    data — extracting project overview, scope, deliverables,
+                    timelines, team requirements, and evaluation criteria.
                   </Typography>
                 </Box>
               </Card>
             </Grid>
             <Grid item xs={12} md={6}>
               <Card sx={{ ...innerCard, p: 0, overflow: "hidden" }}>
-                <Box sx={{ px: 2, py: 1.5, borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: 1 }}>
-                  <Chip label="Completed" size="small" sx={{ bgcolor: "rgba(76,175,80,0.2)", color: "#4caf50", fontWeight: 600, fontSize: "0.7rem" }} />
-                  <Typography variant="subtitle2" fontWeight={700}>Summary &amp; Q&amp;A Agent</Typography>
+                <Box
+                  sx={{
+                    px: 2,
+                    py: 1.5,
+                    borderBottom: "1px solid rgba(255,255,255,0.06)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                  }}
+                >
+                  <Chip
+                    label="Completed"
+                    size="small"
+                    sx={{
+                      bgcolor: "rgba(76,175,80,0.2)",
+                      color: "#4caf50",
+                      fontWeight: 600,
+                      fontSize: "0.7rem",
+                    }}
+                  />
+                  <Typography variant="subtitle2" fontWeight={700}>
+                    Summary &amp; Q&amp;A Agent
+                  </Typography>
                 </Box>
-                <VideoPlayer src="/videos/Summary  Q&A agent.mp4" title="Summary & Q&A Agent Demo" />
+                <VideoPlayer
+                  src="/videos/Summary  Q&A agent.mp4"
+                  title="Summary & Q&A Agent Demo"
+                />
                 <Box sx={{ px: 2, py: 1.5 }}>
-                  <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.6, fontSize: "0.85rem" }}>
-                    Creates structured summaries of projects from extracted data and answers questions to help users understand the RFP and project requirements in detail.
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "text.secondary",
+                      lineHeight: 1.6,
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    Creates structured summaries of projects from extracted data
+                    and answers questions to help users understand the RFP and
+                    project requirements in detail.
                   </Typography>
                 </Box>
               </Card>
@@ -774,62 +1007,189 @@ function RashadContent() {
         {/* ── PHASE 2 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3, opacity: 0.7 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 2" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 2"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 Input Page, Summary Page, AI Agents
               </Typography>
-              <Chip label="Not Started" size="small" sx={{ bgcolor: "rgba(255,255,255,0.08)", color: "text.secondary", fontWeight: 600 }} />
+              <Chip
+                label="Not Started"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(255,255,255,0.08)",
+                  color: "text.secondary",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
-              User Interface &amp; Agent Integration Layer – Where intelligence meets interaction
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated duration:
+              </Box>{" "}
+              2 weeks - 3 weeks
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
+              User Interface &amp; Agent Integration Layer – Where intelligence
+              meets interaction
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Build the user-facing interface that brings Phase 1 agents to life. This phase delivers complete user
-              experience: an intuitive input page where users upload RFPs or enter project data manually, a dynamic
-              summary page that displays extracted insights with editing capabilities, and seamless integration of all
-              AI agents into an interactive workflow. Users can review, validate, and refine AI-generated outputs
-              before proceeding to proposal generation.
+              Build the user-facing interface that brings Phase 1 agents to
+              life. This phase delivers complete user experience: an intuitive
+              input page where users upload RFPs or enter project data manually,
+              a dynamic summary page that displays extracted insights with
+              editing capabilities, and seamless integration of all AI agents
+              into an interactive workflow. Users can review, validate, and
+              refine AI-generated outputs before proceeding to proposal
+              generation.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={0} status="Not Started" />
             </Box>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 1.5, color: "primary.light" }}>User Experience Flow</Typography>
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, alignItems: "center" }}>
-                {["Upload RFP", "AI processes & extracts data", "Review structured summary", "Ask questions via Q&A agent", "Validate & proceed to proposal"].map((step, i, arr) => (
-                  <Box key={step} sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <Chip label={step} size="small" sx={{ bgcolor: "rgba(255,255,255,0.05)", color: "text.secondary", fontSize: "0.72rem" }} />
-                    {i < arr.length - 1 && <Typography sx={{ color: "text.disabled", fontSize: "0.75rem" }}>→</Typography>}
+              <Typography
+                variant="subtitle2"
+                fontWeight={700}
+                sx={{ mb: 1.5, color: "primary.light" }}
+              >
+                User Experience Flow
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 1,
+                  alignItems: "center",
+                }}
+              >
+                {[
+                  "Upload RFP",
+                  "AI processes & extracts data",
+                  "Review structured summary",
+                  "Ask questions via Q&A agent",
+                  "Validate & proceed to proposal",
+                ].map((step, i, arr) => (
+                  <Box
+                    key={step}
+                    sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                  >
+                    <Chip
+                      label={step}
+                      size="small"
+                      sx={{
+                        bgcolor: "rgba(255,255,255,0.05)",
+                        color: "text.secondary",
+                        fontSize: "0.72rem",
+                      }}
+                    />
+                    {i < arr.length - 1 && (
+                      <Typography
+                        sx={{ color: "text.disabled", fontSize: "0.75rem" }}
+                      >
+                        →
+                      </Typography>
+                    )}
                   </Box>
                 ))}
               </Box>
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, mt: 3, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, mt: 3, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Input page design, summary dashboard, Q&A chat interface, data editing workflows" },
-                { label: "Frontend", text: "Drag-drop upload, manual data entry forms, interactive summary cards, chat components" },
-                { label: "Backend", text: "Agent orchestration layer, real-time processing pipeline, validation APIs" },
+                {
+                  label: "UI/UX",
+                  text: "Input page design, summary dashboard, Q&A chat interface, data editing workflows",
+                },
+                {
+                  label: "Frontend",
+                  text: "Drag-drop upload, manual data entry forms, interactive summary cards, chat components",
+                },
+                {
+                  label: "Backend",
+                  text: "Agent orchestration layer, real-time processing pipeline, validation APIs",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
@@ -840,8 +1200,20 @@ function RashadContent() {
                 { team: "AI Team", task: "Phase 2 Agents" },
               ].map((t) => (
                 <Grid item xs={12} sm={6} md={3} key={t.team}>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>{t.team}</Typography>
-                  <Typography variant="body2" sx={{ mb: 0.5 }}>{t.task}</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    {t.team}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    {t.task}
+                  </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
               ))}
@@ -852,64 +1224,175 @@ function RashadContent() {
         {/* ── PHASE 3 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3, opacity: 0.65 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 3" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 3"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 Proposal Generation Engine
               </Typography>
-              <Chip label="Planned" size="small" sx={{ bgcolor: "rgba(100,149,237,0.2)", color: "#6495ed", fontWeight: 600 }} />
+              <Chip
+                label="Planned"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(100,149,237,0.2)",
+                  color: "#6495ed",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
-              Core Proposal Builder – From requirements to ready proposals in minutes
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated duration:
+              </Box>{" "}
+              2 weeks - 3 weeks
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
+              Core Proposal Builder – From requirements to ready proposals in
+              minutes
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Deliver Rashad&apos;s primary value: generating complete, high-quality technical proposals based on
-              structured project data and internal knowledge.
+              Deliver Rashad&apos;s primary value: generating complete,
+              high-quality technical proposals based on structured project data
+              and internal knowledge.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={0} status="Not Started" />
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Agents Delivered
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { title: "Knowledge Agent", desc: "Connects users to relevant Rubix content, past work, and reusable strategic assets" },
-                { title: "Proposal Generation Agent", desc: "Supports creation of structured, branded, and high-quality response documents" },
+                {
+                  title: "Knowledge Agent",
+                  desc: "Connects users to relevant Rubix content, past work, and reusable strategic assets",
+                },
+                {
+                  title: "Proposal Generation Agent",
+                  desc: "Supports creation of structured, branded, and high-quality response documents",
+                },
               ].map((a) => (
                 <Grid item xs={12} sm={6} key={a.title}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="subtitle2" fontWeight={700} sx={{ color: "primary.light", mb: 0.5 }}>{a.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{a.desc}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={700}
+                      sx={{ color: "primary.light", mb: 0.5 }}
+                    >
+                      {a.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {a.desc}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Knowledge base search interface, proposal editor, template selection, version control" },
-                { label: "Frontend", text: "Rich text editor, section navigator, template gallery, export options" },
-                { label: "Backend", text: "Knowledge base integration, AI proposal generation engine, template management, content assembly" },
+                {
+                  label: "UI/UX",
+                  text: "Knowledge base search interface, proposal editor, template selection, version control",
+                },
+                {
+                  label: "Frontend",
+                  text: "Rich text editor, section navigator, template gallery, export options",
+                },
+                {
+                  label: "Backend",
+                  text: "Knowledge base integration, AI proposal generation engine, template management, content assembly",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
@@ -920,8 +1403,20 @@ function RashadContent() {
                 { team: "AI Team", task: "Phase 3 Agents" },
               ].map((t) => (
                 <Grid item xs={12} sm={6} md={3} key={t.team}>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>{t.team}</Typography>
-                  <Typography variant="body2" sx={{ mb: 0.5 }}>{t.task}</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    {t.team}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    {t.task}
+                  </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
               ))}
@@ -932,64 +1427,175 @@ function RashadContent() {
         {/* ── PHASE 4 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3, opacity: 0.6 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 4" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 4"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 Commercial &amp; Financial Proposals
               </Typography>
-              <Chip label="Planned" size="small" sx={{ bgcolor: "rgba(100,149,237,0.2)", color: "#6495ed", fontWeight: 600 }} />
+              <Chip
+                label="Planned"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(100,149,237,0.2)",
+                  color: "#6495ed",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
-              Commercial Intelligence – Smart pricing and commercial structures that win
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated time:
+              </Box>{" "}
+              TBD
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
+              Commercial Intelligence – Smart pricing and commercial structures
+              that win
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Extend Rashad to generate complete commercial and financial proposals, including pricing models, cost
-              breakdowns, resource allocation and team budget.
+              Extend Rashad to generate complete commercial and financial
+              proposals, including pricing models, cost breakdowns, resource
+              allocation and team budget.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={0} status="Not Started" />
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Agents Delivered
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { title: "Commercial Proposal Agent", desc: "Generates complete commercial proposals with professional structure and positioning" },
-                { title: "Pricing Intelligence Module", desc: "Applies smart pricing logic based on project scope, resources, and market benchmarks" },
+                {
+                  title: "Commercial Proposal Agent",
+                  desc: "Generates complete commercial proposals with professional structure and positioning",
+                },
+                {
+                  title: "Pricing Intelligence Module",
+                  desc: "Applies smart pricing logic based on project scope, resources, and market benchmarks",
+                },
               ].map((a) => (
                 <Grid item xs={12} sm={6} key={a.title}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="subtitle2" fontWeight={700} sx={{ color: "primary.light", mb: 0.5 }}>{a.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{a.desc}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={700}
+                      sx={{ color: "primary.light", mb: 0.5 }}
+                    >
+                      {a.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {a.desc}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Pricing strategy builder, cost breakdown tables, budget allocation interface, scenario comparison" },
-                { label: "Frontend", text: "Dynamic pricing calculators, interactive cost tables, chart components, export tools" },
-                { label: "Backend", text: "Pricing logic engine, resource costing service, financial proposal API, ROI calculator" },
+                {
+                  label: "UI/UX",
+                  text: "Pricing strategy builder, cost breakdown tables, budget allocation interface, scenario comparison",
+                },
+                {
+                  label: "Frontend",
+                  text: "Dynamic pricing calculators, interactive cost tables, chart components, export tools",
+                },
+                {
+                  label: "Backend",
+                  text: "Pricing logic engine, resource costing service, financial proposal API, ROI calculator",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
@@ -1000,8 +1606,20 @@ function RashadContent() {
                 { team: "AI Team", task: "Phase 4 Agents" },
               ].map((t) => (
                 <Grid item xs={12} sm={6} md={3} key={t.team}>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>{t.team}</Typography>
-                  <Typography variant="body2" sx={{ mb: 0.5 }}>{t.task}</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    {t.team}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    {t.task}
+                  </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
               ))}
@@ -1012,64 +1630,174 @@ function RashadContent() {
         {/* ── PHASE 5 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3, opacity: 0.55 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 5" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 5"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 Mobilization &amp; Delivery Support
               </Typography>
-              <Chip label="Planned" size="small" sx={{ bgcolor: "rgba(100,149,237,0.2)", color: "#6495ed", fontWeight: 600 }} />
+              <Chip
+                label="Planned"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(100,149,237,0.2)",
+                  color: "#6495ed",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated time:
+              </Box>{" "}
+              TBD
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
               Project Activation – From proposal to project kickoff seamlessly
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Help teams transition from winning the bid to launching the project. Automate mobilization planning,
-              team assignments, kickoff preparation, and early execution.
+              Help teams transition from winning the bid to launching the
+              project. Automate mobilization planning, team assignments, kickoff
+              preparation, and early execution.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={0} status="Not Started" />
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Agents Delivered
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { title: "Delivery Support Agents", desc: "Assists consultants during mobilization and project execution with guided intelligence" },
-                { title: "Mobilization Planner", desc: "Automates team assignments, kickoff preparation, and early execution planning" },
+                {
+                  title: "Delivery Support Agents",
+                  desc: "Assists consultants during mobilization and project execution with guided intelligence",
+                },
+                {
+                  title: "Mobilization Planner",
+                  desc: "Automates team assignments, kickoff preparation, and early execution planning",
+                },
               ].map((a) => (
                 <Grid item xs={12} sm={6} key={a.title}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="subtitle2" fontWeight={700} sx={{ color: "primary.light", mb: 0.5 }}>{a.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{a.desc}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={700}
+                      sx={{ color: "primary.light", mb: 0.5 }}
+                    >
+                      {a.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {a.desc}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Mobilization dashboard, team assignment interface, kickoff checklist, timeline views" },
-                { label: "Frontend", text: "Workflow components, team org chart builder, Gantt charts, task trackers" },
-                { label: "Backend", text: "Mobilization workflow engine, resource allocation service, notification system, delivery tracking" },
+                {
+                  label: "UI/UX",
+                  text: "Mobilization dashboard, team assignment interface, kickoff checklist, timeline views",
+                },
+                {
+                  label: "Frontend",
+                  text: "Workflow components, team org chart builder, Gantt charts, task trackers",
+                },
+                {
+                  label: "Backend",
+                  text: "Mobilization workflow engine, resource allocation service, notification system, delivery tracking",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
@@ -1080,8 +1808,20 @@ function RashadContent() {
                 { team: "AI Team", task: "Phase 5 Agents" },
               ].map((t) => (
                 <Grid item xs={12} sm={6} md={3} key={t.team}>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>{t.team}</Typography>
-                  <Typography variant="body2" sx={{ mb: 0.5 }}>{t.task}</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    {t.team}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    {t.task}
+                  </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
               ))}
@@ -1092,68 +1832,181 @@ function RashadContent() {
         {/* ── PHASE 6 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3, opacity: 0.5 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 6" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 6"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 RFP Agent Creator
               </Typography>
-              <Chip label="Planned" size="small" sx={{ bgcolor: "rgba(100,149,237,0.2)", color: "#6495ed", fontWeight: 600 }} />
+              <Chip
+                label="Planned"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(100,149,237,0.2)",
+                  color: "#6495ed",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
-              Custom Intelligence – Self-Service Agent Builder – Build your own specialized proposal agents
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated time:
+              </Box>{" "}
+              TBD
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
+              Custom Intelligence – Self-Service Agent Builder – Build your own
+              specialized proposal agents
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Enable Rubix teams to reverse the workflow and generate professional RFP documents based on client
-              requirements and project data. When clients provide project needs informally (conversations, briefs,
-              meetings), this agent transforms that input into structured, professional RFP files that can be shared
-              with vendors or used internally. Teams can customize RFP templates, define evaluation criteria, specify
-              deliverables, and automatically generate complete tender documents — turning client discussions into
-              formal procurement documentation.
+              Enable Rubix teams to reverse the workflow and generate
+              professional RFP documents based on client requirements and
+              project data. When clients provide project needs informally
+              (conversations, briefs, meetings), this agent transforms that
+              input into structured, professional RFP files that can be shared
+              with vendors or used internally. Teams can customize RFP
+              templates, define evaluation criteria, specify deliverables, and
+              automatically generate complete tender documents — turning client
+              discussions into formal procurement documentation.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={0} status="Not Started" />
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Agents Delivered
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { title: "RFP Agent Creator Platform", desc: "Transforms informal client inputs into structured, professional RFP documents" },
-                { title: "Agent Training Interface", desc: "Allows teams to train and configure specialized agents for specific procurement needs" },
+                {
+                  title: "RFP Agent Creator Platform",
+                  desc: "Transforms informal client inputs into structured, professional RFP documents",
+                },
+                {
+                  title: "Agent Training Interface",
+                  desc: "Allows teams to train and configure specialized agents for specific procurement needs",
+                },
               ].map((a) => (
                 <Grid item xs={12} sm={6} key={a.title}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="subtitle2" fontWeight={700} sx={{ color: "primary.light", mb: 0.5 }}>{a.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{a.desc}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={700}
+                      sx={{ color: "primary.light", mb: 0.5 }}
+                    >
+                      {a.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {a.desc}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Agent builder wizard, training data uploader, configuration screens, testing interface" },
-                { label: "Frontend", text: "Drag-drop agent builder, dataset manager, preview console, agent library" },
-                { label: "Backend", text: "Agent configuration engine, training pipeline, agent execution runtime, registry system" },
+                {
+                  label: "UI/UX",
+                  text: "Agent builder wizard, training data uploader, configuration screens, testing interface",
+                },
+                {
+                  label: "Frontend",
+                  text: "Drag-drop agent builder, dataset manager, preview console, agent library",
+                },
+                {
+                  label: "Backend",
+                  text: "Agent configuration engine, training pipeline, agent execution runtime, registry system",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
@@ -1164,8 +2017,20 @@ function RashadContent() {
                 { team: "AI Team", task: "Phase 6 Agents" },
               ].map((t) => (
                 <Grid item xs={12} sm={6} md={3} key={t.team}>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>{t.team}</Typography>
-                  <Typography variant="body2" sx={{ mb: 0.5 }}>{t.task}</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    {t.team}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    {t.task}
+                  </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
               ))}
@@ -1176,68 +2041,191 @@ function RashadContent() {
         {/* ── PHASE 7 ── */}
         <Grid item xs={12}>
           <Card sx={{ ...card, p: 3, opacity: 0.45 }}>
-            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 1.5, mb: 1.5 }}>
-              <Chip label="Phase 7" size="small" sx={{ bgcolor: "rgba(190,14,91,0.2)", color: "primary.light", fontWeight: 700, fontSize: "0.72rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: 1.5,
+                mb: 1.5,
+              }}
+            >
+              <Chip
+                label="Phase 7"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                }}
+              />
               <Typography variant="subtitle1" fontWeight={700}>
                 Consulting Agents Ecosystem
               </Typography>
-              <Chip label="Planned" size="small" sx={{ bgcolor: "rgba(100,149,237,0.2)", color: "#6495ed", fontWeight: 600 }} />
+              <Chip
+                label="Planned"
+                size="small"
+                sx={{
+                  bgcolor: "rgba(100,149,237,0.2)",
+                  color: "#6495ed",
+                  fontWeight: 600,
+                }}
+              />
             </Box>
 
-            <Typography variant="body2" sx={{ color: "primary.light", fontStyle: "italic", mb: 2, fontSize: "0.82rem" }}>
-              Expert Network – AI-powered consulting expertise across the entire engagement lifecycle
+            <Typography
+              variant="body2"
+              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
+            >
+              <Box
+                component="span"
+                sx={{ fontWeight: 600, color: "primary.light" }}
+              >
+                Estimated time:
+              </Box>{" "}
+              TBD
+            </Typography>
+
+            <Typography
+              variant="body2"
+              sx={{
+                color: "primary.light",
+                fontStyle: "italic",
+                mb: 2,
+                fontSize: "0.82rem",
+              }}
+            >
+              Expert Network – AI-powered consulting expertise across the entire
+              engagement lifecycle
             </Typography>
 
             <Typography sx={{ ...bodyText, mb: 3 }}>
-              Expand Rashad into a full consulting platform with agents covering research, diagnostics, strategy
-              formulation, implementation planning, and post-delivery support.
+              Expand Rashad into a full consulting platform with agents covering
+              research, diagnostics, strategy formulation, implementation
+              planning, and post-delivery support.
             </Typography>
 
             <Box sx={{ mb: 3 }}>
-              <Typography variant="body2" fontWeight={600} sx={{ mb: 1, color: "text.secondary" }}>Overall Progress</Typography>
+              <Typography
+                variant="body2"
+                fontWeight={600}
+                sx={{ mb: 1, color: "text.secondary" }}
+              >
+                Overall Progress
+              </Typography>
               <AnimatedProgressBar value={0} status="Not Started" />
             </Box>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Agents Delivered
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { title: "Research & Market Analysis Agent", desc: "Delivers deep market insights and competitive intelligence to support strategy" },
-                { title: "Diagnostic & Assessment Agent", desc: "Evaluates organizational and project health through structured diagnostics" },
-                { title: "Strategy Formulation Agent", desc: "Assists teams in building data-driven strategic recommendations and plans" },
-                { title: "Implementation Roadmap Agent", desc: "Converts strategies into clear, actionable implementation plans and timelines" },
-                { title: "Post-Delivery Support Agent", desc: "Provides ongoing guidance and monitoring during post-project delivery phases" },
-                { title: "Learning Engine", desc: "Continuously improves output quality by capturing patterns, feedback, and reusable assets" },
+                {
+                  title: "Research & Market Analysis Agent",
+                  desc: "Delivers deep market insights and competitive intelligence to support strategy",
+                },
+                {
+                  title: "Diagnostic & Assessment Agent",
+                  desc: "Evaluates organizational and project health through structured diagnostics",
+                },
+                {
+                  title: "Strategy Formulation Agent",
+                  desc: "Assists teams in building data-driven strategic recommendations and plans",
+                },
+                {
+                  title: "Implementation Roadmap Agent",
+                  desc: "Converts strategies into clear, actionable implementation plans and timelines",
+                },
+                {
+                  title: "Post-Delivery Support Agent",
+                  desc: "Provides ongoing guidance and monitoring during post-project delivery phases",
+                },
+                {
+                  title: "Learning Engine",
+                  desc: "Continuously improves output quality by capturing patterns, feedback, and reusable assets",
+                },
               ].map((a) => (
                 <Grid item xs={12} sm={6} md={4} key={a.title}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="subtitle2" fontWeight={700} sx={{ color: "primary.light", mb: 0.5 }}>{a.title}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{a.desc}</Typography>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={700}
+                      sx={{ color: "primary.light", mb: 0.5 }}
+                    >
+                      {a.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {a.desc}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Implementation
             </Typography>
             <Grid container spacing={2} sx={{ mb: 3 }}>
               {[
-                { label: "UI/UX", text: "Research dashboard, diagnostic tools, strategy canvas, roadmap visualizer, feedback portal" },
-                { label: "Frontend", text: "Multi-agent interface, data visualization, assessment forms, interactive roadmaps" },
-                { label: "Backend", text: "Research engine, diagnostic logic, strategy algorithms, roadmap builder, learning pipeline" },
+                {
+                  label: "UI/UX",
+                  text: "Research dashboard, diagnostic tools, strategy canvas, roadmap visualizer, feedback portal",
+                },
+                {
+                  label: "Frontend",
+                  text: "Multi-agent interface, data visualization, assessment forms, interactive roadmaps",
+                },
+                {
+                  label: "Backend",
+                  text: "Research engine, diagnostic logic, strategy algorithms, roadmap builder, learning pipeline",
+                },
               ].map((row) => (
                 <Grid item xs={12} sm={4} key={row.label}>
                   <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                    <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700, display: "block", mb: 0.5, textTransform: "uppercase", letterSpacing: 0.8 }}>{row.label}</Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>{row.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        color: "primary.main",
+                        fontWeight: 700,
+                        display: "block",
+                        mb: 0.5,
+                        textTransform: "uppercase",
+                        letterSpacing: 0.8,
+                      }}
+                    >
+                      {row.label}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.7 }}
+                    >
+                      {row.text}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
             </Grid>
 
-            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 2, color: "primary.light" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ mb: 2, color: "primary.light" }}
+            >
               Team Progress
             </Typography>
             <Grid container spacing={2}>
@@ -1248,8 +2236,20 @@ function RashadContent() {
                 { team: "AI Team", task: "Phase 7 Agents" },
               ].map((t) => (
                 <Grid item xs={12} sm={6} md={3} key={t.team}>
-                  <Typography variant="caption" sx={{ color: "text.secondary", fontWeight: 600, display: "block", mb: 1 }}>{t.team}</Typography>
-                  <Typography variant="body2" sx={{ mb: 0.5 }}>{t.task}</Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    {t.team}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    {t.task}
+                  </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
               ))}
@@ -2656,6 +3656,11 @@ export default function ProjectsSection() {
           title="Rashad Project"
           subtitle="Rubix’s AI-powered consulting intelligence system"
           chips={[
+            {
+              label: "Phase 1 / 7",
+              bg: "rgba(190,14,91,0.2)",
+              color: "primary.light",
+            },
             {
               label: "In Development",
               bg: "rgba(255,193,7,0.2)",
