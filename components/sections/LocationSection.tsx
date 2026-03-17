@@ -23,6 +23,9 @@ const images = [
   { src: "/location1.jpeg", alt: "Rubix office interior workspace" },
   { src: "/location.jpeg", alt: "Office building exterior" },
   { src: "/location3.jpeg", alt: "Building close-up view" },
+  { src: "/location4.png", alt: "Office lounge and reception area" },
+  { src: "/location5.png", alt: "Open workspace and collaboration area" },
+  { src: "/location6.png", alt: "Conference room" },
 ];
 
 export default function LocationSection() {
@@ -159,13 +162,13 @@ export default function LocationSection() {
               viewport={{ once: true, amount: 0.15 }}
               variants={stagger}
             >
-              {/* Main large image */}
+              {/* Row 1: large hero image */}
               <motion.div variants={fadeUp}>
                 <Box
                   sx={{
                     position: "relative",
                     width: "100%",
-                    height: { xs: 240, sm: 320, md: 360 },
+                    height: { xs: 220, sm: 300, md: 340 },
                     borderRadius: 3,
                     overflow: "hidden",
                     mb: 2,
@@ -191,9 +194,9 @@ export default function LocationSection() {
                 </Box>
               </motion.div>
 
-              {/* Two smaller images */}
-              <Box sx={{ display: "flex", gap: 2 }}>
-                {images.slice(1).map((img, i) => (
+              {/* Row 2: two images side-by-side */}
+              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+                {images.slice(1, 3).map((img) => (
                   <motion.div
                     key={img.src}
                     variants={fadeUp}
@@ -203,7 +206,7 @@ export default function LocationSection() {
                       sx={{
                         position: "relative",
                         width: "100%",
-                        height: { xs: 140, sm: 180, md: 250 },
+                        height: { xs: 130, sm: 170, md: 200 },
                         borderRadius: 3,
                         overflow: "hidden",
                         border: "1px solid rgba(255,255,255,0.08)",
@@ -215,6 +218,44 @@ export default function LocationSection() {
                         fill
                         style={{ objectFit: "cover" }}
                         sizes="(max-width: 900px) 50vw, 29vw"
+                      />
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          inset: 0,
+                          background:
+                            "linear-gradient(180deg, transparent 60%, rgba(10,10,15,0.5) 100%)",
+                        }}
+                      />
+                    </Box>
+                  </motion.div>
+                ))}
+              </Box>
+
+              {/* Row 3: three images in a balanced grid */}
+              <Box sx={{ display: "flex", gap: 2 }}>
+                {images.slice(3).map((img) => (
+                  <motion.div
+                    key={img.src}
+                    variants={fadeUp}
+                    style={{ flex: 1 }}
+                  >
+                    <Box
+                      sx={{
+                        position: "relative",
+                        width: "100%",
+                        height: { xs: 110, sm: 150, md: 180 },
+                        borderRadius: 3,
+                        overflow: "hidden",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                      }}
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes="(max-width: 900px) 33vw, 19vw"
                       />
                       <Box
                         sx={{

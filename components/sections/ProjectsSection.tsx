@@ -2257,6 +2257,17 @@ function RashadContent() {
           </Card>
         </Grid>
       </Grid>
+
+      {/* AI & Product Intelligence Studies – integrated into Rashad */}
+      <Box id="ai-studies" component="section" sx={{ mt: 5, pt: 4, borderTop: "1px solid rgba(255,255,255,0.12)" }}>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          AI & Product Intelligence Studies
+        </Typography>
+        <Typography variant="body2" sx={{ color: "text.secondary", mb: 3, lineHeight: 1.7 }}>
+          Ongoing research into emerging AI applications, competitive product models, consulting technology trends, and scalable digital business opportunities.
+        </Typography>
+        <AIStudiesContent />
+      </Box>
     </>
   );
 }
@@ -3803,39 +3814,6 @@ export default function ProjectsSection() {
           onToggle={() => toggle("sulhafa")}
         >
           <RoadmapProjectContent objective="Maintain stability, close development gaps, and support controlled regional growth for Sulhafa across the roadmap horizon." />
-        </ProjectAccordion>
-
-        <Typography
-          variant="h2"
-          sx={{
-            mt: 2,
-            fontWeight: 700,
-            fontSize: { xs: "1.75rem", sm: "2.125rem" },
-          }}
-        >
-          Research & Intelligence
-        </Typography>
-        <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-          AI Pulse continuously conducts product, AI, and market intelligence
-          research to support better design decisions, stronger product
-          strategy, and more informed innovation across Rubix.
-        </Typography>
-        <ProjectAccordion
-          id="ai-studies"
-          icon={<ScienceIcon sx={{ color: "primary.main", fontSize: 24 }} />}
-          title="AI & Product Intelligence Studies"
-          subtitle="Ongoing research into emerging AI applications, competitive product models, consulting technology trends, and scalable digital business opportunities."
-          chips={[
-            {
-              label: "Ongoing",
-              bg: "#260312",
-              color: "#FF6B9D",
-            },
-          ]}
-          open={open === "ai-studies"}
-          onToggle={() => toggle("ai-studies")}
-        >
-          <AIStudiesContent />
         </ProjectAccordion>
       </Box>
     </SectionWrapper>
