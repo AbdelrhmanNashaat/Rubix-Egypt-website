@@ -54,7 +54,9 @@ const btnSx = {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [projectsAnchor, setProjectsAnchor] = useState<null | HTMLElement>(null);
+  const [projectsAnchor, setProjectsAnchor] = useState<null | HTMLElement>(
+    null,
+  );
   const [rdAnchor, setRdAnchor] = useState<null | HTMLElement>(null);
   const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [rdExpanded, setRdExpanded] = useState(false);
@@ -124,38 +126,6 @@ export default function Navbar() {
               Roadmap
             </Button>
 
-            {/* R&D dropdown */}
-            <Button
-              onClick={(e) => setRdAnchor(e.currentTarget)}
-              endIcon={<KeyboardArrowDownIcon />}
-              sx={btnSx}
-            >
-              R&D
-            </Button>
-            <Menu
-              anchorEl={rdAnchor}
-              open={Boolean(rdAnchor)}
-              onClose={() => setRdAnchor(null)}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-              transformOrigin={{ vertical: "top", horizontal: "center" }}
-              PaperProps={menuPaperProps}
-            >
-              {rdLinks.map((link) => (
-                <MenuItem
-                  key={link.href}
-                  component="a"
-                  href={link.href}
-                  onClick={() => setRdAnchor(null)}
-                  sx={{
-                    py: 1.5,
-                    "&:hover": { bgcolor: "rgba(255,255,255,0.06)" },
-                  }}
-                >
-                  {link.label}
-                </MenuItem>
-              ))}
-            </Menu>
-
             {/* Projects dropdown */}
             <Button
               onClick={(e) => setProjectsAnchor(e.currentTarget)}
@@ -187,7 +157,37 @@ export default function Navbar() {
                 </MenuItem>
               ))}
             </Menu>
-
+            {/* R&D dropdown */}
+            <Button
+              onClick={(e) => setRdAnchor(e.currentTarget)}
+              endIcon={<KeyboardArrowDownIcon />}
+              sx={btnSx}
+            >
+              R&D
+            </Button>
+            <Menu
+              anchorEl={rdAnchor}
+              open={Boolean(rdAnchor)}
+              onClose={() => setRdAnchor(null)}
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+              transformOrigin={{ vertical: "top", horizontal: "center" }}
+              PaperProps={menuPaperProps}
+            >
+              {rdLinks.map((link) => (
+                <MenuItem
+                  key={link.href}
+                  component="a"
+                  href={link.href}
+                  onClick={() => setRdAnchor(null)}
+                  sx={{
+                    py: 1.5,
+                    "&:hover": { bgcolor: "rgba(255,255,255,0.06)" },
+                  }}
+                >
+                  {link.label}
+                </MenuItem>
+              ))}
+            </Menu>
             {trailingLinks.map((link) => (
               <Button
                 key={link.href}
@@ -248,35 +248,6 @@ export default function Navbar() {
             </ListItemButton>
           </ListItem>
 
-          {/* R&D expandable */}
-          <ListItem disablePadding>
-            <ListItemButton
-              onClick={() => setRdExpanded(!rdExpanded)}
-              sx={{ py: 2 }}
-            >
-              <ListItemText primary="R&D" />
-              {rdExpanded ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-          </ListItem>
-          <Collapse in={rdExpanded} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {rdLinks.map((link) => (
-                <ListItem key={link.href} disablePadding>
-                  <ListItemButton
-                    href={link.href}
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setRdExpanded(false);
-                    }}
-                    sx={{ py: 1.5, pl: 4 }}
-                  >
-                    <ListItemText primary={link.label} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
-            </List>
-          </Collapse>
-
           {/* Projects expandable */}
           <ListItem disablePadding>
             <ListItemButton
@@ -296,6 +267,34 @@ export default function Navbar() {
                     onClick={() => {
                       setMobileOpen(false);
                       setProjectsExpanded(false);
+                    }}
+                    sx={{ py: 1.5, pl: 4 }}
+                  >
+                    <ListItemText primary={link.label} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+          {/* R&D expandable */}
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={() => setRdExpanded(!rdExpanded)}
+              sx={{ py: 2 }}
+            >
+              <ListItemText primary="R&D" />
+              {rdExpanded ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+          </ListItem>
+          <Collapse in={rdExpanded} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {rdLinks.map((link) => (
+                <ListItem key={link.href} disablePadding>
+                  <ListItemButton
+                    href={link.href}
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setRdExpanded(false);
                     }}
                     sx={{ py: 1.5, pl: 4 }}
                   >
