@@ -532,8 +532,7 @@ function RashadContent() {
         Project Timeline — Rashad Milestones
       </Typography>
       <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-        Timeline and phases are planned for 5–6 milestones; full details will be
-        updated as the project progresses.
+        Key milestones across Phase 1 and Phase 2 of the Rashad development roadmap.
       </Typography>
       <Box sx={{ position: "relative", pl: { xs: 3, sm: 4 }, mb: 4 }}>
         <Box
@@ -554,30 +553,49 @@ function RashadContent() {
             title: "Rashad Engine – Project Initiated",
             desc: "Project scope defined with Mr. Hisham Darwish. Teams assembled across UI/UX, Front-End, Back-End, and AI disciplines.",
             filled: true,
+            current: false,
           },
           {
             label: "12 MARCH 2026",
             title: "UI/UX – Phase 1 Deadline",
             desc: "UI/UX team deadline for Landing Page and Authentication screen designs.",
             filled: true,
+            current: false,
           },
           {
             label: "17 MARCH 2026",
             title: "Front-End & Back-End – Phase 1 Deadline",
             desc: "Both development teams deliver Phase 1 implementation. Integration of Landing Page, Authentication, and Summary Agent begins.",
             filled: true,
+            current: false,
           },
           {
             label: "19 MARCH 2026",
-            title: "Phase 1 Full Delivery Target",
-            desc: "Full Phase 1 complete: Landing Page, Authentication system, Summary & Q&A AI Agents live and tested.",
+            title: "Phase 1 Complete",
+            desc: "Full Phase 1 delivered: Landing Page, Authentication system, Summary & Q&A AI Agents live and tested.",
             filled: true,
+            current: false,
           },
           {
-            label: "TBD – PHASE 2",
-            title: "Phase 2 Kickoff – Input & Summary Pages",
-            desc: "Standard Mode, Detailed Mode, 3-tab Summary Page, full AI proposal generation, and export functionality.",
+            label: "NOW — PHASE 2",
+            title: "Phase 2 Kickoff – Input Page, Summary Page & AI Agents",
+            desc: "Active development across all teams. UI/UX, Front-End, and Back-End targeting April 6; AI Team targeting April 16.",
+            filled: true,
+            current: true,
+          },
+          {
+            label: "6 APRIL 2026",
+            title: "Phase 2 Deadline — All Teams",
+            desc: "UI/UX, Front-End, and Back-End teams deliver Phase 2: Input Page, Summary Page, and full UI integration.",
             filled: false,
+            current: false,
+          },
+          {
+            label: "16 APRIL 2026",
+            title: "Phase 2 Deadline — AI Team",
+            desc: "AI Team delivers Proposal Agent and Presentation Agent, completing the Phase 2 intelligence layer.",
+            filled: false,
+            current: false,
           },
         ].map((m, i) => (
           <Box key={i} sx={{ position: "relative", pb: 3 }}>
@@ -591,21 +609,44 @@ function RashadContent() {
                 borderRadius: "50%",
                 bgcolor: m.filled ? "primary.main" : "transparent",
                 border: "2px solid",
-                borderColor: "primary.main",
+                borderColor: m.current ? "#ffc107" : "primary.main",
+                boxShadow: m.current ? "0 0 8px rgba(255,193,7,0.6)" : "none",
               }}
             />
-            <Card sx={{ ...card, p: 2, ml: 1 }}>
-              <Chip
-                label={m.label}
-                size="small"
-                sx={{
-                  mb: 1,
-                  bgcolor: "primary.900",
-                  color: "primary.light",
-                  fontWeight: 700,
-                  fontSize: "0.7rem",
-                }}
-              />
+            <Card
+              sx={{
+                ...card,
+                p: 2,
+                ml: 1,
+                borderColor: m.current
+                  ? "rgba(255,193,7,0.5)"
+                  : "rgba(255,255,255,0.08)",
+              }}
+            >
+              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 1, alignItems: "center" }}>
+                <Chip
+                  label={m.label}
+                  size="small"
+                  sx={{
+                    bgcolor: m.current ? "rgba(255,193,7,0.2)" : "primary.900",
+                    color: m.current ? "#ffc107" : "primary.light",
+                    fontWeight: 700,
+                    fontSize: "0.7rem",
+                  }}
+                />
+                {m.current && (
+                  <Chip
+                    label="In Progress"
+                    size="small"
+                    sx={{
+                      bgcolor: "rgba(255,193,7,0.15)",
+                      color: "#ffc107",
+                      fontWeight: 600,
+                      fontSize: "0.65rem",
+                    }}
+                  />
+                )}
+              </Box>
               <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 0.5 }}>
                 {m.title}
               </Typography>
@@ -656,11 +697,11 @@ function RashadContent() {
                 Document Intelligence &amp; Analysis
               </Typography>
               <Chip
-                label="In Progress"
+                label="Delivered"
                 size="small"
                 sx={{
-                  bgcolor: "rgba(255,193,7,0.2)",
-                  color: "#ffc107",
+                  bgcolor: "rgba(76,175,80,0.2)",
+                  color: "#4caf50",
                   fontWeight: 600,
                 }}
               />
@@ -673,7 +714,7 @@ function RashadContent() {
                 component="span"
                 sx={{ fontWeight: 600, color: "primary.light" }}
               >
-                Estimated completion:
+                Delivered:
               </Box>{" "}
               19/3
             </Typography>
@@ -710,7 +751,7 @@ function RashadContent() {
               >
                 Overall Progress
               </Typography>
-              <AnimatedProgressBar value={75} status="In Progress" />
+              <AnimatedProgressBar value={100} status="Completed" />
             </Box>
 
             <Typography
@@ -845,7 +886,7 @@ function RashadContent() {
                 <Typography variant="body2" sx={{ mb: 0.5 }}>
                   Phase 1 Implementation
                 </Typography>
-                <AnimatedProgressBar value={50} status="In Progress" />
+                <AnimatedProgressBar value={100} status="Completed" />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
                 <Typography
@@ -862,7 +903,7 @@ function RashadContent() {
                 <Typography variant="body2" sx={{ mb: 0.5 }}>
                   Auth APIs
                 </Typography>
-                <AnimatedProgressBar value={50} status="In Progress" />
+                <AnimatedProgressBar value={100} status="Completed" />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
                 <Typography
@@ -1006,7 +1047,8 @@ function RashadContent() {
 
         {/* ── PHASE 2 ── */}
         <Grid item xs={12}>
-          <Card sx={{ ...card, p: 3, opacity: 0.7 }}>
+          <Card sx={{ ...card, p: 3 }}>
+            {/* Phase 2 header */}
             <Box
               sx={{
                 display: "flex",
@@ -1030,28 +1072,15 @@ function RashadContent() {
                 Input Page, Summary Page, AI Agents
               </Typography>
               <Chip
-                label="Not Started"
+                label="In Progress"
                 size="small"
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.08)",
-                  color: "text.secondary",
+                  bgcolor: "rgba(255,193,7,0.2)",
+                  color: "#ffc107",
                   fontWeight: 600,
                 }}
               />
             </Box>
-
-            <Typography
-              variant="body2"
-              sx={{ color: "text.secondary", fontSize: "0.82rem", mb: 2 }}
-            >
-              <Box
-                component="span"
-                sx={{ fontWeight: 600, color: "primary.light" }}
-              >
-                Estimated duration:
-              </Box>{" "}
-              2 weeks - 3 weeks
-            </Typography>
 
             <Typography
               variant="body2"
@@ -1076,17 +1105,6 @@ function RashadContent() {
               refine AI-generated outputs before proceeding to proposal
               generation.
             </Typography>
-
-            <Box sx={{ mb: 3 }}>
-              <Typography
-                variant="body2"
-                fontWeight={600}
-                sx={{ mb: 1, color: "text.secondary" }}
-              >
-                Overall Progress
-              </Typography>
-              <AnimatedProgressBar value={0} status="Not Started" />
-            </Box>
 
             <Box sx={{ mb: 3 }}>
               <Typography
@@ -1185,21 +1203,39 @@ function RashadContent() {
               ))}
             </Grid>
 
-            <Typography
-              variant="subtitle2"
-              fontWeight={700}
-              sx={{ mb: 2, color: "primary.light" }}
+            {/* ── Section A: All Teams — deadline April 6 ── */}
+            <Box
+              sx={{
+                ...innerCard,
+                p: 2.5,
+                mb: 2,
+              }}
             >
-              Team Progress
-            </Typography>
-            <Grid container spacing={2}>
-              {[
-                { team: "UI/UX Team", task: "Phase 2 Design" },
-                { team: "Front-End Team", task: "Phase 2 Implementation" },
-                { team: "Back-End Team", task: "Phase 2 APIs" },
-                { team: "AI Team", task: "Phase 2 Agents" },
-              ].map((t) => (
-                <Grid item xs={12} sm={6} md={3} key={t.team}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  gap: 1,
+                  mb: 2,
+                }}
+              >
+                <Typography variant="subtitle2" fontWeight={700}>
+                  UI/UX, Frontend &amp; Backend Teams
+                </Typography>
+                <Chip
+                  label="Deadline: April 6, 2026"
+                  size="small"
+                  sx={{
+                    bgcolor: "rgba(255,193,7,0.15)",
+                    color: "#ffc107",
+                    fontWeight: 600,
+                    fontSize: "0.7rem",
+                  }}
+                />
+              </Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={4}>
                   <Typography
                     variant="caption"
                     sx={{
@@ -1209,15 +1245,90 @@ function RashadContent() {
                       mb: 1,
                     }}
                   >
-                    {t.team}
+                    UI/UX Team
                   </Typography>
                   <Typography variant="body2" sx={{ mb: 0.5 }}>
-                    {t.task}
+                    Phase 2 Design
+                  </Typography>
+                  <AnimatedProgressBar value={80} status="In Progress" />
+                </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    Front-End Team
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    Phase 2 Implementation
                   </Typography>
                   <AnimatedProgressBar value={0} status="Not Started" />
                 </Grid>
-              ))}
-            </Grid>
+                <Grid item xs={12} sm={4}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: "text.secondary",
+                      fontWeight: 600,
+                      display: "block",
+                      mb: 1,
+                    }}
+                  >
+                    Back-End Team
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    Phase 2 APIs
+                  </Typography>
+                  <AnimatedProgressBar value={0} status="Not Started" />
+                </Grid>
+              </Grid>
+            </Box>
+
+            {/* ── Section B: AI Team — deadline April 16 ── */}
+            <Box sx={{ ...innerCard, p: 2.5 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  gap: 1,
+                  mb: 2,
+                }}
+              >
+                <Typography variant="subtitle2" fontWeight={700}>
+                  AI Team
+                </Typography>
+                <Chip
+                  label="Deadline: April 16, 2026"
+                  size="small"
+                  sx={{
+                    bgcolor: "rgba(190,14,91,0.15)",
+                    color: "primary.light",
+                    fontWeight: 600,
+                    fontSize: "0.7rem",
+                  }}
+                />
+              </Box>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    Proposal Agent
+                  </Typography>
+                  <AnimatedProgressBar value={30} status="In Progress" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Typography variant="body2" sx={{ mb: 0.5 }}>
+                    Presentation Agent
+                  </Typography>
+                  <AnimatedProgressBar value={30} status="In Progress" />
+                </Grid>
+              </Grid>
+            </Box>
           </Card>
         </Grid>
 
@@ -3673,7 +3784,7 @@ export default function ProjectsSection() {
               color: "#ef5350",
             },
             {
-              label: "Phase 1 / 7",
+              label: "Phase 2 / 7",
               bg: "rgba(190,14,91,0.2)",
               color: "primary.light",
             },
