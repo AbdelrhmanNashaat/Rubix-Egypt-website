@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Box from "@mui/material/Box";
@@ -22,11 +22,7 @@ import DescriptionIcon from "@mui/icons-material/Description";
 import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 import SlideshowIcon from "@mui/icons-material/Slideshow";
 import DatasetIcon from "@mui/icons-material/Dataset";
-import PsychologyIcon from "@mui/icons-material/Psychology";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import ScienceIcon from "@mui/icons-material/Science";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -532,7 +528,8 @@ function RashadContent() {
         Project Timeline — Rashad Milestones
       </Typography>
       <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-        Key milestones across Phase 1 and Phase 2 of the Rashad development roadmap.
+        Key milestones across Phase 1 and Phase 2 of the Rashad development
+        roadmap.
       </Typography>
       <Box sx={{ position: "relative", pl: { xs: 3, sm: 4 }, mb: 4 }}>
         <Box
@@ -623,7 +620,15 @@ function RashadContent() {
                   : "rgba(255,255,255,0.08)",
               }}
             >
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 1, alignItems: "center" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 1,
+                  mb: 1,
+                  alignItems: "center",
+                }}
+              >
                 <Chip
                   label={m.label}
                   size="small"
@@ -2372,783 +2377,1015 @@ function RashadContent() {
   );
 }
 
+function WorcareSectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <Typography
+      variant="overline"
+      sx={{
+        color: "primary.main",
+        letterSpacing: 2,
+        fontWeight: 600,
+        display: "block",
+        mb: 1,
+      }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
+const worcareHideScrollbar = {
+  scrollbarWidth: "none",
+  msOverflowStyle: "none",
+  "&::-webkit-scrollbar": { display: "none" },
+} as const;
+
+function WorcareOperatingCycle() {
+  const steps = [
+    {
+      name: "Onboard",
+      desc: "Organization joins, departments configured, employees invited",
+    },
+    {
+      name: "Assess",
+      desc: "Employees complete 100-question holistic wellbeing assessment (20 questions per pillar)",
+    },
+    {
+      name: "Diagnose",
+      desc: "HR views baseline: wellbeing index, pillar gaps, burnout risk, engagement risk indicators",
+    },
+    {
+      name: "Personalize",
+      desc: "Each employee receives content, programs, habits, and events based on their scores",
+    },
+    {
+      name: "Activate",
+      desc: "Employees engage with structured programs, webinars, events, and challenges",
+    },
+    {
+      name: "Support",
+      desc: "Organizations deploy EAP counseling, workshops, and enterprise interventions",
+    },
+    {
+      name: "Reassess",
+      desc: "Employees retake assessment. Progress measured against baseline. New cycle begins.",
+    },
+  ];
+
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const ratiosRef = useRef<number[]>(steps.map(() => 0));
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const idx = Number((e.target as HTMLElement).dataset.step);
+          if (!Number.isNaN(idx)) ratiosRef.current[idx] = e.intersectionRatio;
+        });
+        let best = 0;
+        let bestR = -1;
+        ratiosRef.current.forEach((r, i) => {
+          if (r > bestR) {
+            bestR = r;
+            best = i;
+          }
+        });
+        setActive(bestR >= 0.2 ? best : 0);
+      },
+      { threshold: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 1] },
+    );
+
+    itemRefs.current.forEach((el) => {
+      if (el) obs.observe(el);
+    });
+
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <Box component="ol" sx={{ listStyle: "none", m: 0, p: 0 }}>
+      {steps.map((s, i) => (
+        <Box
+          key={s.name}
+          component="li"
+          ref={(el) => {
+            itemRefs.current[i] = el as HTMLDivElement | null;
+          }}
+          data-step={i}
+          sx={{
+            display: "flex",
+            gap: 2,
+            mb: 2.5,
+            p: 2,
+            borderRadius: 2,
+            border: "1px solid",
+            borderColor:
+              active === i ? "primary.main" : "rgba(255,255,255,0.1)",
+            bgcolor:
+              active === i
+                ? "rgba(190, 14, 91, 0.12)"
+                : "rgba(255,255,255,0.03)",
+            transition: "border-color 0.25s ease, background 0.25s ease",
+          }}
+        >
+          <Box
+            sx={{
+              flexShrink: 0,
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+              fontSize: "0.9rem",
+              bgcolor: active === i ? "primary.main" : "rgba(255,255,255,0.08)",
+              color: active === i ? "#fff" : "text.secondary",
+            }}
+          >
+            {i + 1}
+          </Box>
+          <Box sx={{ minWidth: 0 }}>
+            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
+              {s.name}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ lineHeight: 1.65 }}
+            >
+              {s.desc}
+            </Typography>
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  );
+}
+
+function WorcareMaturityStep({ title, body }: { title: string; body: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <Box
+      ref={ref}
+      sx={{
+        position: "relative",
+        pl: 3,
+        pb: 2.5,
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          left: 11,
+          top: 10,
+          bottom: -4,
+          width: 2,
+          bgcolor: "rgba(255,255,255,0.12)",
+        },
+        "&:last-of-type::before": { display: "none" },
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          left: 0,
+          top: 4,
+          width: 22,
+          height: 22,
+          borderRadius: "50%",
+          border: "2px solid",
+          borderColor: visible ? "primary.main" : "rgba(255,255,255,0.2)",
+          bgcolor: "background.paper",
+          transition: "border-color 0.4s ease, transform 0.4s ease",
+          transform: visible ? "scale(1)" : "scale(0.85)",
+        }}
+      />
+      <Box
+        sx={{
+          pl: 2,
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(10px)",
+          transition: "opacity 0.45s ease, transform 0.45s ease",
+        }}
+      >
+        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
+          {title}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ lineHeight: 1.65 }}
+        >
+          {body}
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
 function WorcareContent() {
+  const problemCards = [
+    {
+      title: "Burnout & Disengagement",
+      text: "Rising burnout, financial stress, and declining work-life balance are affecting productivity, retention, and workforce performance",
+    },
+    {
+      title: "Isolated Initiatives",
+      text: "Occasional workshops and content libraries lack measurement, continuity, and a structured framework for lasting improvement",
+    },
+    {
+      title: "No Measurable Impact",
+      text: "Organizations have no way to track wellbeing improvement or connect it to business outcomes over time",
+    },
+  ];
+
+  const pillars = [
+    {
+      title: "Mental",
+      text: "Psychological health, stress management, cognitive clarity",
+    },
+    {
+      title: "Emotional",
+      text: "Resilience, emotional regulation, self-awareness",
+    },
+    {
+      title: "Financial",
+      text: "Financial stability, money habits, reducing financial anxiety",
+    },
+    {
+      title: "Physical",
+      text: "Sleep, exercise, nutrition, energy levels",
+    },
+    {
+      title: "Purposeful",
+      text: "Meaning at work, career alignment, motivation",
+    },
+  ];
+
+  const layers = [
+    {
+      name: "Strategic Layer",
+      modules: "Corporate Wellbeing Strategy Dashboard · Maturity Model",
+    },
+    {
+      name: "Measurement Layer",
+      modules:
+        "Holistic Assessment Engine · Wellbeing Index Engine · Reassessment Engine",
+    },
+    {
+      name: "Activation Layer",
+      modules:
+        "Personalized Content Engine · Structured Programs · Behavioral Tracking Tools · Webinars & Events",
+    },
+    {
+      name: "Engagement Layer",
+      modules: "Credits & Rewards Engine · Challenges & Streaks · Marketplace",
+    },
+    {
+      name: "Corporate Support Layer",
+      modules:
+        "EAP Integration · Corporate Workshops · Enterprise Customization · HR Integrations",
+    },
+  ];
+
+  const modulesList = [
+    {
+      n: "01",
+      name: "Onboarding Module",
+      desc: "Employer and employee setup, departments, branding configuration",
+    },
+    {
+      n: "02",
+      name: "Assessment Engine",
+      desc: "100-question delivery, versioning, mandatory gating, progress saving",
+    },
+    {
+      n: "03",
+      name: "Wellbeing Index Engine",
+      desc: "Converts responses into pillar scores and overall wellbeing index",
+    },
+    {
+      n: "04",
+      name: "Corporate Strategy Dashboard",
+      desc: "HR command center: index, heatmap, burnout risk, maturity score",
+    },
+    {
+      n: "05",
+      name: "Personalization Engine",
+      desc: "Recommends content, programs, and habits by pillar scores and behavior",
+    },
+    {
+      n: "06",
+      name: "Content & Knowledge Base",
+      desc: "Articles, videos, micro-learning, guides, AI-assisted content generation",
+    },
+    {
+      n: "07",
+      name: "Structured Programs",
+      desc: "Guided multi-step wellbeing journeys with milestones and completion tracking",
+    },
+    {
+      n: "08",
+      name: "Behavioral Tracking Tools",
+      desc: "Daily check-ins, mood tracker, habit tracker, streaks, nudges",
+    },
+    {
+      n: "09",
+      name: "Webinars & Events",
+      desc: "Calendar, registration, attendance tracking, credits, recording archive",
+    },
+    {
+      n: "10",
+      name: "Credits & Rewards Engine",
+      desc: "Awards credits per action; configurable matrix; ledger per user",
+    },
+    {
+      n: "11",
+      name: "Marketplace",
+      desc: "Redeem credits for offers, discounts, memberships, employer-sponsored rewards",
+    },
+    {
+      n: "12",
+      name: "EAP Integration",
+      desc: "Embedded professional counseling: chat, video, phone. Privacy-separated from employer data.",
+    },
+    {
+      n: "13",
+      name: "Corporate Workshops",
+      desc: "Request, schedule, deliver workshops by pillar; tracked per plan",
+    },
+    {
+      n: "14",
+      name: "Enterprise Customization",
+      desc: "White-label, HR integrations, custom assessments, branded experience",
+    },
+    {
+      n: "15",
+      name: "Maturity Model Module",
+      desc: "Tracks 5-level organizational maturity with progression ladder and recommendations",
+    },
+  ];
+
+  const maturityLevels = [
+    {
+      title: "Level 1 — Awareness",
+      body: "Baseline assessment completed · First insights generated · Awareness campaigns launched",
+    },
+    {
+      title: "Level 2 — Engagement",
+      body: "Employees actively using platform · Webinar and event participation · Habit tracking begins",
+    },
+    {
+      title: "Level 3 — Behavior Change",
+      body: "Structured programs completed · Wellbeing scores improving · Habits consistently practiced",
+    },
+    {
+      title: "Level 4 — Wellbeing Culture",
+      body: "Leadership participation · Department engagement · Wellbeing embedded in routines",
+    },
+    {
+      title: "Level 5 — Sustainable Wellbeing Organization",
+      body: "Wellbeing integrated into HR strategy · Measurable productivity impact · Long-term wellbeing governance",
+    },
+  ];
+
+  const aiCards = [
+    {
+      title: "Pillar Content Agents",
+      text: "Transform curated knowledge base into articles, scripts, exercises, and formats per pillar",
+    },
+    {
+      title: "Personalization Engine",
+      text: "Recommends the right content and programs per employee based on scores and behavior",
+    },
+    {
+      title: "Customer Support Agent",
+      text: "Guides users through the platform and answers usage questions automatically",
+    },
+    {
+      title: "Lead Generator Agent",
+      text: "Commercial tool for qualifying leads and scheduling demos (not in employee app)",
+    },
+    {
+      title: "Vendor Discovery (Future Phase)",
+      text: "AI identifies marketplace vendor fit based on user patterns and strategy",
+    },
+  ];
+
+  const principles = [
+    "Build WorCare as a system, not as separate disconnected pages",
+    "The assessment engine is the foundation of the entire product",
+    "Personalization must be driven by scores and behavior, not static rules",
+    "Employer dashboards must feel strategic, not just descriptive",
+    "Maturity progression must be measurable and visible",
+    "Content architecture must be pillar-based and reusable across modules",
+    "Every user action that matters must be trackable",
+    "Credits and marketplace must reinforce wellbeing behavior, not feel gimmicky",
+    "Enterprise requirements must be supported through modular controls, not custom forks",
+    "The system must be scalable for future products and enterprise-grade features from day one",
+  ];
+
   return (
     <>
-      <Card sx={{ ...card, p: 3, mb: 3 }}>
-        <Typography
-          variant="subtitle2"
-          sx={{ color: "primary.light", mb: 1, fontWeight: 700 }}
+      {/* Section 1 — Video */}
+      <Box sx={{ mb: 4 }}>
+        <Box
+          sx={{
+            width: "100%",
+            borderRadius: 3,
+            overflow: "hidden",
+            bgcolor: "rgba(0,0,0,0.35)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}
         >
-          Driving Workforce Well‑Being at Scale
-        </Typography>
-        <Typography sx={{ color: "text.secondary", mb: 2, lineHeight: 1.8 }}>
-          Worcare is a comprehensive workplace well-being platform designed to
-          help organizations foster resilient, engaged, and high‑performing
-          teams. It integrates employee care, mental health support, and
-          well‑being programs into a unified, enterprise‑ready solution. Through
-          structured initiatives, expert-led guidance, and actionable insights,
-          Worcare enables organizations to proactively support their people
-          while equipping leadership with the visibility needed to drive
-          sustainable performance, retention, and organizational health.
-        </Typography>
-      </Card>
+          <Box sx={{ position: "relative", width: "100%", pt: "56.25%" }}>
+            <Box
+              component="video"
+              className="w-full rounded-xl object-cover"
+              src="/videos/worcare.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
+          </Box>
+        </Box>
+      </Box>
 
-      <Typography variant="h6" sx={{ ...sectionTitle }}>
-        Key Dimensions of WorCare
-      </Typography>
-      <Grid container spacing={2} sx={{ mb: 4 }}>
-        {[
-          {
-            icon: PsychologyIcon,
-            label: "Mental Well-Being",
-            sub: "Manage stress, improve focus, and access mindfulness resources.",
-          },
-          {
-            icon: FavoriteIcon,
-            label: "Emotional Well-Being",
-            sub: "Boost morale with recognition programs, support channels, and a safe workplace.",
-          },
-          {
-            icon: FitnessCenterIcon,
-            label: "Physical Well-Being",
-            sub: "Track health, join wellness challenges, and access fitness programs and insurance support.",
-          },
-          {
-            icon: SelfImprovementIcon,
-            label: "Purpose Well-Being",
-            sub: "Grow through career development, training, mentorship, and goal alignment.",
-          },
-          {
-            icon: AccountBalanceWalletIcon,
-            label: "Financial Well-Being",
-            sub: "Plan and manage finances with budgeting tools and stability support.",
-          },
-        ].map((d) => (
-          <Grid item xs={12} sm={6} key={d.label} sx={{ minHeight: "120px" }}>
-            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-              <Box sx={{ display: "flex", alignItems: "flex-start", gap: 1.5 }}>
-                <d.icon
-                  sx={{ color: "primary.main", fontSize: 24, mt: 0.25 }}
-                />
-                <Box>
-                  <Typography variant="body2" fontWeight={700}>
-                    {d.label}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mt: 0.5, lineHeight: 1.6 }}
-                  >
-                    {d.sub}
-                  </Typography>
-                </Box>
+      {/* Section 2 — The Problem */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>THE PROBLEM</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
+          Wellbeing Initiatives Are Broken
+        </Typography>
+        <Grid container spacing={2} sx={{ mb: 2 }}>
+          {problemCards.map((c) => (
+            <Grid item xs={12} md={4} key={c.title}>
+              <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+                <Typography variant="body2" sx={{ fontWeight: 700, mb: 1 }}>
+                  {c.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.65 }}
+                >
+                  {c.text}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+        <Card
+          sx={{
+            ...card,
+            p: 2.5,
+            borderLeft: "4px solid",
+            borderColor: "primary.main",
+            bgcolor: "rgba(190, 14, 91, 0.08)",
+          }}
+        >
+          <Typography variant="body2" sx={{ ...bodyText, fontStyle: "italic" }}>
+            &ldquo;WorCare transforms wellbeing from a temporary initiative into
+            a sustainable organizational capability.&rdquo;
+          </Typography>
+        </Card>
+      </Box>
+
+      {/* Section 3 — Five Pillars */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>THE FRAMEWORK</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          Built on Five Wellbeing Pillars
+        </Typography>
+        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
+          Every assessment, program, content piece, event, and dashboard in
+          WorCare is built around these five scientifically grounded dimensions
+          of employee wellbeing.
+        </Typography>
+        <Box
+          sx={{
+            display: { xs: "flex", md: "grid" },
+            gridTemplateColumns: { md: "repeat(5, minmax(0, 1fr))" },
+            gap: 2,
+            overflowX: { xs: "auto", md: "visible" },
+            scrollSnapType: { xs: "x mandatory", md: "none" },
+            ...worcareHideScrollbar,
+            pb: { xs: 0.5, md: 0 },
+          }}
+        >
+          {pillars.map((p) => (
+            <Card
+              key={p.title}
+              sx={{
+                ...innerCard,
+                p: 2,
+                flex: { xs: "0 0 min(280px, 88vw)", md: "unset" },
+                scrollSnapAlign: { xs: "start", md: "unset" },
+              }}
+            >
+              <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.75 }}>
+                {p.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.6 }}
+              >
+                {p.text}
+              </Typography>
+            </Card>
+          ))}
+        </Box>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ mt: 2, lineHeight: 1.65 }}
+        >
+          100-question holistic assessment · 20 questions per pillar · Mandatory
+          for every employee before accessing the personalized experience.
+        </Typography>
+      </Box>
+
+      {/* Section 4 — Operating Cycle */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>THE SYSTEM</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          A Continuous 7-Stage Operating Cycle
+        </Typography>
+        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
+          WorCare is not a tool — it is a continuous operating cycle that
+          repeats and improves over time.
+        </Typography>
+        <WorcareOperatingCycle />
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ mt: 1, lineHeight: 1.65 }}
+        >
+          Once this cycle completes, it restarts — with better data, stronger
+          programs, and measurable improvement.
+        </Typography>
+      </Box>
+
+      {/* Section 5 — Two Key Indicators */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>INTELLIGENCE</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
+          Two Indicators That Change How HR Leads
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Card sx={{ ...innerCard, p: 3, height: "100%" }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: "2.25rem", sm: "2.75rem" },
+                  fontWeight: 800,
+                  color: "primary.light",
+                  lineHeight: 1.1,
+                  mb: 1,
+                }}
+              >
+                68 / 100
+              </Typography>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+                Corporate Wellbeing Index
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.65 }}
+              >
+                Measures the current wellbeing state of employees across all
+                five pillars. Answers the question: How healthy is our workforce
+                today?
+              </Typography>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card sx={{ ...innerCard, p: 3, height: "100%" }}>
+              <Typography
+                sx={{
+                  fontSize: { xs: "2.25rem", sm: "2.75rem" },
+                  fontWeight: 800,
+                  color: "primary.light",
+                  lineHeight: 1.1,
+                  mb: 0.25,
+                }}
+              >
+                Level 3
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "text.secondary",
+                  display: "block",
+                  mb: 1,
+                  fontWeight: 600,
+                }}
+              >
+                Behavior Change
+              </Typography>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+                Corporate Wellbeing Maturity Level
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.65 }}
+              >
+                Measures how effectively the organization manages wellbeing —
+                tracking evolution through 5 maturity stages from Awareness to
+                Sustainable Wellbeing Organization.
+              </Typography>
+            </Card>
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Section 6 — Maturity Ladder */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>MATURITY MODEL</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          Five Levels of Organizational Growth
+        </Typography>
+        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
+          The Maturity Model tracks organizational capability — not just
+          employee scores, but the organization&apos;s ability to sustain
+          wellbeing over time.
+        </Typography>
+        <Card sx={{ ...card, p: 2.5, mb: 2 }}>
+          {maturityLevels.map((lvl) => (
+            <WorcareMaturityStep
+              key={lvl.title}
+              title={lvl.title}
+              body={lvl.body}
+            />
+          ))}
+        </Card>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ lineHeight: 1.65 }}
+        >
+          Maturity is calculated from: participation rate, program completion,
+          behavioral adoption, leadership engagement, and score improvement over
+          time.
+        </Typography>
+      </Box>
+
+      {/* Section 7 — Architecture */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>ARCHITECTURE</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          Five Integrated System Layers
+        </Typography>
+        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
+          WorCare is not a list of features — it is five layers working together
+          as one operating system.
+        </Typography>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {layers.map((L) => (
+            <Card key={L.name} sx={{ ...innerCard, p: 2 }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, mb: 0.75 }}
+              >
+                {L.name}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.65 }}
+              >
+                {L.modules}
+              </Typography>
+            </Card>
+          ))}
+        </Box>
+      </Box>
+
+      {/* Section 8 — Modules */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>MODULES</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
+          15 Functional Modules
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
+            pb: 1,
+            ...worcareHideScrollbar,
+          }}
+        >
+          {modulesList.map((m) => (
+            <Card
+              key={m.n}
+              sx={{
+                ...innerCard,
+                p: 2,
+                flex: "0 0 280px",
+                width: 280,
+                maxWidth: "85vw",
+                scrollSnapAlign: "start",
+              }}
+            >
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "primary.light",
+                  fontWeight: 700,
+                  letterSpacing: 1,
+                }}
+              >
+                {m.n}
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, mt: 0.5, mb: 0.75 }}
+              >
+                {m.name}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.6 }}
+              >
+                {m.desc}
+              </Typography>
+            </Card>
+          ))}
+        </Box>
+      </Box>
+
+      {/* Section 9 — Plans */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>PLANS</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
+          Three Tiers Built for Every Organization
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ ...innerCard, p: 2.5, height: "100%" }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1.5 }}>
+                Basic
+              </Typography>
+              <Box
+                component="ul"
+                sx={{
+                  m: 0,
+                  pl: 2,
+                  color: "text.secondary",
+                  "& li": { mb: 0.75 },
+                }}
+              >
+                <li>Holistic assessment + employee wellbeing scores</li>
+                <li>Core content library</li>
+                <li>Standard structured programs</li>
+                <li>Basic behavioral tools</li>
+                <li>Credits engine</li>
+                <li>Marketplace access</li>
+                <li>Basic employer dashboard</li>
               </Box>
             </Card>
           </Grid>
-        ))}
-      </Grid>
-
-      <Typography
-        variant="h6"
-        sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}
-      >
-        Well-being apps ranking (by downloads)
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                #
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                APP
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                DOWNLOADS
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                ANDROID
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                IOS
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              {
-                r: 1,
-                app: "Happify",
-                dl: "+500k",
-                and: "3.6★ (3.4K)",
-                ios: "4.5★ (4.7K)",
-              },
-              {
-                r: 2,
-                app: "Tuhoon",
-                dl: "+100k",
-                and: "4.6★ (2.63K)",
-                ios: "4.7★ (654)",
-              },
-              {
-                r: 3,
-                app: "Wellable",
-                dl: "+100k",
-                and: "–",
-                ios: "4.5★ (2.8K)",
-              },
-              {
-                r: 4,
-                app: "BetterUp",
-                dl: "+50k",
-                and: "–",
-                ios: "4.5★ (423)",
-              },
-              {
-                r: 5,
-                app: "MantraCare",
-                dl: "+50k",
-                and: "–",
-                ios: "1.0★ (1)",
-              },
-              {
-                r: 6,
-                app: "Takalam",
-                dl: "+10k",
-                and: "3.2★ (52)",
-                ios: "5.0★ (1)",
-              },
-              { r: 7, app: "VIWELL", dl: "+1k", and: "–", ios: "5.0★ (2)" },
-              {
-                r: 8,
-                app: "Wellness360",
-                dl: "+1k",
-                and: "–",
-                ios: "4.0★ (1)",
-              },
-              { r: 9, app: "Woliba", dl: "+1k", and: "–", ios: "2.7★ (65)" },
-              { r: 10, app: "Wellics", dl: "+100", and: "–", ios: "–" },
-              { r: 11, app: "MindTales", dl: "–", and: "–", ios: "–" },
-            ].map((row) => (
-              <TableRow
-                key={row.app}
-                sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-                }}
-              >
-                <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>
-                  {row.r}
-                </TableCell>
-                <TableCell sx={{ color: "text.secondary", fontWeight: 500 }}>
-                  {row.app}
-                </TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>{row.dl}</TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>
-                  {row.and}
-                </TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>
-                  {row.ios}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="h6"
-        sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
-      >
-        Comparative Analysis – Coverage by Dimension
-      </Typography>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ display: "block", mb: 2 }}
-      >
-        High = Strong coverage · Low = Limited or no coverage
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              {[
-                "APP",
-                "MENTAL",
-                "EMOTIONAL",
-                "PHYSICAL",
-                "PURPOSE",
-                "FINANCIAL",
-              ].map((h) => (
-                <TableCell
-                  key={h}
-                  sx={{ fontWeight: 700, color: "primary.light" }}
-                >
-                  {h}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              {
-                app: "Happify",
-                m: "High",
-                e: "High",
-                p: "Low",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "Tuhoon",
-                m: "High",
-                e: "High",
-                p: "Low",
-                pur: "Low",
-                f: "Low",
-              },
-              {
-                app: "Wellable",
-                m: "High",
-                e: "High",
-                p: "High",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "BetterUp",
-                m: "High",
-                e: "High",
-                p: "Low",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "MantraCare",
-                m: "High",
-                e: "High",
-                p: "High",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "Takalam",
-                m: "High",
-                e: "High",
-                p: "Low",
-                pur: "Low",
-                f: "Low",
-              },
-              {
-                app: "VIWELL",
-                m: "High",
-                e: "High",
-                p: "High",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "Wellness360",
-                m: "High",
-                e: "High",
-                p: "High",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "Woliba",
-                m: "High",
-                e: "High",
-                p: "High",
-                pur: "High",
-                f: "High",
-              },
-              {
-                app: "Wellics",
-                m: "High",
-                e: "High",
-                p: "High",
-                pur: "High",
-                f: "Low",
-              },
-              {
-                app: "MindTales",
-                m: "High",
-                e: "High",
-                p: "Low",
-                pur: "High",
-                f: "Low",
-              },
-            ].map((row) => (
-              <TableRow
-                key={row.app}
-                sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-                }}
-              >
-                <TableCell sx={{ fontWeight: 500, color: "text.secondary" }}>
-                  {row.app}
-                </TableCell>
-                {[row.m, row.e, row.p, row.pur, row.f].map((v, i) => (
-                  <TableCell
-                    key={i}
-                    sx={{
-                      color: v === "High" ? "primary.light" : "text.secondary",
-                    }}
-                  >
-                    {v}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="h6"
-        sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}
-      >
-        Competitive Feature Comparison
-      </Typography>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ display: "block", mb: 1 }}
-      >
-        Y = Feature present · N = Feature absent
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 2, ...card, overflow: "hidden" }}
-      >
-        <Table size="small" stickyHeader>
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell
-                sx={{ fontWeight: 700, color: "primary.light", minWidth: 160 }}
-              >
-                APP / FEATURE
-              </TableCell>
-              {[
-                "Happify",
-                "Tuhoon",
-                "Wellable",
-                "BetterUp",
-                "MantraCare",
-                "Takalam",
-                "VIWELL",
-                "Wellness360",
-                "Woliba",
-                "Wellics",
-                "MindTales",
-              ].map((app) => (
-                <TableCell
-                  key={app}
-                  align="center"
-                  sx={{ fontWeight: 700, color: "primary.light", minWidth: 68 }}
-                >
-                  {app}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              {
-                f: "Mental Health Programs",
-                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-              },
-              {
-                f: "Emotional Support / Therapy",
-                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-              },
-              { f: "1-on-1 Coaching", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              {
-                f: "AI-Driven Personalization",
-                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-              },
-              {
-                f: "Physical Activity Tracking",
-                y: [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0],
-              },
-              {
-                f: "Fitness Device Integration",
-                y: [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0],
-              },
-              { f: "Nutrition Programs", y: [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
-              { f: "Sleep Programs", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1] },
-              {
-                f: "Stress Management Tools",
-                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-              },
-              { f: "Guided Meditations", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Goal Setting", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Progress Tracking", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              {
-                f: "Gamification / Challenges",
-                y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
-              },
-              {
-                f: "Rewards / Incentives",
-                y: [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0],
-              },
-              { f: "Financial Wellness", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
-              { f: "Social / Community", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1] },
-              {
-                f: "Enterprise Dashboard / HR",
-                y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-              },
-              {
-                f: "Corporate Wellness Programs",
-                y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-              },
-            ].map((row) => (
-              <TableRow
-                key={row.f}
-                sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-                }}
-              >
-                <TableCell sx={{ fontWeight: 500, color: "text.secondary" }}>
-                  {row.f}
-                </TableCell>
-                {row.y.map((v, i) => (
-                  <TableCell
-                    key={i}
-                    align="center"
-                    sx={{ color: v ? "primary.light" : "text.secondary" }}
-                  >
-                    {v ? "Y" : "N"}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="h6"
-        sx={{ fontWeight: 700, mb: 2, mt: 4, color: "primary.light" }}
-      >
-        The 5-Dimension Coverage Gap
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Dimension
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Apps Covering It
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Market Saturation
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              { dim: "Mental", apps: "11 / 11", sat: "🔴 Fully saturated" },
-              { dim: "Emotional", apps: "11 / 11", sat: "🔴 Fully saturated" },
-              { dim: "Physical", apps: "7 / 11", sat: "🟡 Moderately covered" },
-              { dim: "Purpose", apps: "8 / 11", sat: "🟡 Moderately covered" },
-              { dim: "Financial", apps: "1 / 11", sat: "🟢 Nearly empty" },
-            ].map((r) => (
-              <TableRow
-                key={r.dim}
-                sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-                }}
-              >
-                <TableCell sx={{ fontWeight: 600, color: "text.secondary" }}>
-                  {r.dim}
-                </TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>{r.apps}</TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>{r.sat}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="h6"
-        sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}
-      >
-        Feature-Level Gap Analysis
-      </Typography>
-      <Typography
-        variant="body2"
-        color="text.secondary"
-        sx={{ mb: 2, lineHeight: 1.6 }}
-      >
-        These features exist in 90–100% of competitors. Users expect them by
-        default. Not having them is an immediate disqualifier.
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Feature
-              </TableCell>
-              <TableCell
-                sx={{ fontWeight: 700, color: "primary.light" }}
-                align="right"
-              >
-                Coverage
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              { f: "Mental Health Programs", c: "11 / 11 — 100%" },
-              { f: "Emotional Support / Therapy", c: "11 / 11 — 100%" },
-              { f: "Stress Management Tools", c: "11 / 11 — 100%" },
-              { f: "Goal Setting", c: "11 / 11 — 100%" },
-              { f: "Progress Tracking", c: "11 / 11 — 100%" },
-              { f: "AI-Driven Personalization", c: "10 / 11 — 91%" },
-              { f: "Guided Meditations", c: "9 / 11 — 82%" },
-            ].map((r) => (
-              <TableRow
-                key={r.f}
-                sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-                }}
-              >
-                <TableCell sx={{ color: "text.secondary" }}>{r.f}</TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ color: "primary.light", fontWeight: 600 }}
-                >
-                  {r.c}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="subtitle2"
-        sx={{ fontWeight: 700, mb: 1.5, mt: 3, color: "primary.light" }}
-      >
-        Competitive Features
-      </Typography>
-      <Typography
-        variant="body2"
-        color="text.secondary"
-        sx={{ mb: 2, lineHeight: 1.6 }}
-      >
-        Present in roughly half the market. Having them signals maturity.
-        Missing them signals a gap.
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Feature
-              </TableCell>
-              <TableCell
-                sx={{ fontWeight: 700, color: "primary.light" }}
-                align="right"
-              >
-                Coverage
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              { f: "Physical Activity Tracking", c: "9 / 11 — 82%" },
-              { f: "Gamification / Challenges", c: "8 / 11 — 73%" },
-              { f: "Nutrition Programs", c: "6 / 11 — 55%" },
-              { f: "HR Dashboard & Analytics", c: "6 / 11 — 55%" },
-              { f: "Rewards / Incentives", c: "5 / 11 — 45%" },
-              { f: "Corporate Wellness Programs", c: "5 / 11 — 45%" },
-              { f: "Fitness Device Integration", c: "5 / 11 — 45%" },
-            ].map((r) => (
-              <TableRow
-                key={r.f}
-                sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-                }}
-              >
-                <TableCell sx={{ color: "text.secondary" }}>{r.f}</TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ color: "primary.light", fontWeight: 600 }}
-                >
-                  {r.c}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="subtitle2"
-        sx={{ fontWeight: 700, mb: 1.5, mt: 3, color: "primary.light" }}
-      >
-        Differentiation Features
-      </Typography>
-      <Typography
-        variant="body2"
-        color="text.secondary"
-        sx={{ mb: 2, lineHeight: 1.6 }}
-      >
-        Rare in the market. Covering these creates a clear reason to choose
-        WorCare over anyone else.
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Feature
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Coverage
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Why It Matters
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow
+          <Grid item xs={12} md={4}>
+            <Card
               sx={{
-                "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                ...innerCard,
+                p: 2.5,
+                height: "100%",
+                border: "2px solid",
+                borderColor: "primary.main",
+                bgcolor: "rgba(190, 14, 91, 0.1)",
+                position: "relative",
               }}
             >
-              <TableCell sx={{ color: "text.secondary" }}>
-                Sleep Programs
-              </TableCell>
-              <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>
-                4 / 11 — 36%
-              </TableCell>
-              <TableCell sx={{ color: "text.secondary" }}>
-                Sleep directly drives productivity — employers care deeply about
-                this
-              </TableCell>
-            </TableRow>
-            <TableRow
-              sx={{
-                "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
-              }}
-            >
-              <TableCell sx={{ color: "text.secondary" }}>
-                Financial Wellness
-              </TableCell>
-              <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>
-                1 / 11 — 9%
-              </TableCell>
-              <TableCell sx={{ color: "text.secondary" }}>
-                The #1 source of employee stress globally — almost no app
-                addresses it
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      <Typography
-        variant="h6"
-        sx={{ fontWeight: 700, mb: 2, mt: 4, color: "primary.light" }}
-      >
-        Competitor Weakness Breakdown
-      </Typography>
-      <TableContainer
-        component={Paper}
-        sx={{ mb: 4, ...card, overflowX: "auto" }}
-      >
-        <Table size="small">
-          <TableHead>
-            <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Competitor
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                Key Gap
-              </TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
-                WorCare Advantage
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[
-              {
-                comp: "Happify",
-                gap: "No physical, no financial",
-                adv: "Cover both and you outclass it across the board",
-              },
-              {
-                comp: "Tuhoon",
-                gap: "No physical, no purpose, no financial",
-                adv: "Strong on mental only — very limited scope",
-              },
-              {
-                comp: "BetterUp",
-                gap: "No physical, no financial",
-                adv: "Premium-priced but incomplete on 2 dimensions",
-              },
-              {
-                comp: "Takalam",
-                gap: "Covers only mental & emotional",
-                adv: "Essentially a therapy app, not a well-being platform",
-              },
-              {
-                comp: "Woliba",
-                gap: "Only competitor with financial — but 1k downloads",
-                adv: "Proves the demand exists, hasn't executed on growth",
-              },
-              {
-                comp: "MantraCare / Wellable",
-                gap: "Missing financial only",
-                adv: "Close to full — WorCare must also cover financial to beat them",
-              },
-            ].map((r, i) => (
-              <TableRow
-                key={r.comp}
+              <Chip
+                label="Recommended"
+                size="small"
                 sx={{
-                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                  position: "absolute",
+                  top: 12,
+                  right: 12,
+                  fontWeight: 700,
+                  fontSize: "0.65rem",
+                  bgcolor: "primary.main",
+                  color: "#fff",
+                }}
+              />
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1.5 }}>
+                Pro
+              </Typography>
+              <Box
+                component="ul"
+                sx={{
+                  m: 0,
+                  pl: 2,
+                  color: "text.secondary",
+                  "& li": { mb: 0.75 },
                 }}
               >
-                <TableCell sx={{ fontWeight: 600, color: "text.secondary" }}>
-                  {r.comp}
-                </TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>{r.gap}</TableCell>
-                <TableCell sx={{ color: "primary.light" }}>{r.adv}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                <li>Everything in Basic</li>
+                <li>Advanced employer dashboard</li>
+                <li>Higher admin controls</li>
+                <li>Workshop eligibility</li>
+                <li>Stronger analytics and reporting</li>
+                <li>Webinar segmentation</li>
+              </Box>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ ...innerCard, p: 2.5, height: "100%" }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1.5 }}>
+                Enterprise
+              </Typography>
+              <Box
+                component="ul"
+                sx={{
+                  m: 0,
+                  pl: 2,
+                  color: "text.secondary",
+                  "& li": { mb: 0.75 },
+                }}
+              >
+                <li>Everything in Pro</li>
+                <li>White-label / branded experience</li>
+                <li>Assessment customization</li>
+                <li>Enterprise HR system integrations</li>
+                <li>EAP add-on option</li>
+                <li>Advanced strategic reporting</li>
+                <li>Custom maturity support</li>
+              </Box>
+            </Card>
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Section 10 — AI */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>AI INTELLIGENCE</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          AI Built Into the Core — Not Bolted On
+        </Typography>
+        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
+          Every AI component in WorCare is curated, controllable, and
+          reviewable. AI outputs are generated from approved knowledge — never
+          from uncontrolled public sources.
+        </Typography>
+        <Grid container spacing={2}>
+          {aiCards.map((a) => (
+            <Grid item xs={12} sm={6} md={4} key={a.title}>
+              <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+                <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.75 }}>
+                  {a.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.6 }}
+                >
+                  {a.text}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+
+      {/* Section 11 — Roadmap */}
+      <Box sx={{ mb: 5 }}>
+        <WorcareSectionLabel>ROADMAP</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
+          Three-Phase Build Plan
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
+              >
+                Phase 1 — Core Operating System MVP
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.65 }}
+              >
+                Employer onboarding · Employee onboarding · Holistic assessment
+                · Scoring and baseline dashboard · Personalized content
+                recommendations · Core content library · Structured programs ·
+                Behavioral tracking basics · Webinar and event calendar ·
+                Credits engine · Marketplace basic redemption · Employer
+                dashboard (all plan tiers) · Maturity model rule-based version ·
+                EAP integration entry point
+              </Typography>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
+              >
+                Phase 2 — Advanced Strategic Layer
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.65 }}
+              >
+                Absenteeism and productivity input models · Richer burnout
+                analytics · Deeper maturity scoring · Employer benchmarking
+                logic · White-label enhancements · Workshop management workflow
+                · Custom assessment versions · Richer vendor workflows
+              </Typography>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
+              >
+                Phase 3 — AI & Ecosystem Expansion
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.65 }}
+              >
+                Advanced recommendation engine · AI-generated content workflow
+                expansion · Vendor discovery engine · Predictive risk analytics
+                · Expanded enterprise integrations
+              </Typography>
+            </Card>
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* Section 12 — Build Principles */}
+      <Box sx={{ mb: 2 }}>
+        <WorcareSectionLabel>BUILD PRINCIPLES</WorcareSectionLabel>
+        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
+          10 Principles That Define How We Build
+        </Typography>
+        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
+          WorCare is engineered as a system — not assembled as a collection of
+          disconnected pages.
+        </Typography>
+        <Grid container spacing={1.5}>
+          {principles.map((text, i) => (
+            <Grid item xs={12} md={6} key={i}>
+              <Card sx={{ ...innerCard, p: 1.75, height: "100%" }}>
+                <Typography
+                  variant="body2"
+                  sx={{ fontWeight: 700, color: "primary.light", mb: 0.5 }}
+                >
+                  {i + 1}.
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.65 }}
+                >
+                  {text}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </>
   );
 }
