@@ -2269,19 +2269,17 @@ function WorcareContent() {
           variant="subtitle2"
           sx={{ color: "primary.light", mb: 1, fontWeight: 700 }}
         >
-          WorCare – Supporting Your People, Elevating Your Business
+          Driving Workforce Well‑Being at Scale
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 2, lineHeight: 1.8 }}>
-          WorCare is a digital wellbeing and workplace engagement platform being
-          developed to help organizations strengthen employee experience,
-          engagement, and overall workplace health through structured digital
-          journeys, meaningful content, and scalable service integration.
-        </Typography>
-
-        <Typography sx={{ color: "text.secondary", lineHeight: 1.8 }}>
-          AI Pulse is supporting the evolution of WorCare from concept to
-          platform logic by shaping the product structure, experience flows, and
-          digital foundation required for long-term scalability.
+          Worcare is a comprehensive workplace well-being platform designed to
+          help organizations foster resilient, engaged, and high‑performing
+          teams. It integrates employee care, mental health support, and
+          well‑being programs into a unified, enterprise‑ready solution. Through
+          structured initiatives, expert-led guidance, and actionable insights,
+          Worcare enables organizations to proactively support their people
+          while equipping leadership with the visibility needed to drive
+          sustainable performance, retention, and organizational health.
         </Typography>
       </Card>
 
@@ -3696,7 +3694,7 @@ export default function ProjectsSection() {
           id="worcare"
           icon={<FavoriteIcon sx={{ color: "primary.main", fontSize: 24 }} />}
           title="Worcare Project"
-          subtitle="WorCare boosts employee well-being and engagement"
+          subtitle="The Corporate Wellbeing Operating System"
           chips={[
             {
               label: "Core Build",

@@ -191,19 +191,17 @@ function WorcareResearchContent() {
           variant="subtitle2"
           sx={{ color: "primary.light", mb: 1, fontWeight: 700 }}
         >
-          WorCare – Supporting Your People, Elevating Your Business
+          Driving Workforce Well‑Being at Scale
         </Typography>
         <Typography sx={{ color: "text.secondary", mb: 2, lineHeight: 1.8 }}>
-          WorCare is a digital wellbeing and workplace engagement platform being
-          developed to help organizations strengthen employee experience,
-          engagement, and overall workplace health through structured digital
-          journeys, meaningful content, and scalable service integration.
-        </Typography>
-
-        <Typography sx={{ color: "text.secondary", lineHeight: 1.8 }}>
-          AI Pulse is supporting the evolution of WorCare from concept to
-          platform logic by shaping the product structure, experience flows, and
-          digital foundation required for long-term scalability.
+          Worcare is a comprehensive workplace well-being platform designed to
+          help organizations foster resilient, engaged, and high‑performing
+          teams. It integrates employee care, mental health support, and
+          well‑being programs into a unified, enterprise‑ready solution. Through
+          structured initiatives, expert-led guidance, and actionable insights,
+          Worcare enables organizations to proactively support their people
+          while equipping leadership with the visibility needed to drive
+          sustainable performance, retention, and organizational health.
         </Typography>
       </Card>
 
@@ -275,72 +273,250 @@ function WorcareResearchContent() {
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>#</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>APP</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>DOWNLOADS</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>ANDROID</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>IOS</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                #
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                APP
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                DOWNLOADS
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                ANDROID
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                IOS
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {[
-              { r: 1, app: "Happify", dl: "+500k", and: "3.6★ (3.4K)", ios: "4.5★ (4.7K)" },
-              { r: 2, app: "Tuhoon", dl: "+100k", and: "4.6★ (2.63K)", ios: "4.7★ (654)" },
-              { r: 3, app: "Wellable", dl: "+100k", and: "–", ios: "4.5★ (2.8K)" },
-              { r: 4, app: "BetterUp", dl: "+50k", and: "–", ios: "4.5★ (423)" },
-              { r: 5, app: "MantraCare", dl: "+50k", and: "–", ios: "1.0★ (1)" },
-              { r: 6, app: "Takalam", dl: "+10k", and: "3.2★ (52)", ios: "5.0★ (1)" },
+              {
+                r: 1,
+                app: "Happify",
+                dl: "+500k",
+                and: "3.6★ (3.4K)",
+                ios: "4.5★ (4.7K)",
+              },
+              {
+                r: 2,
+                app: "Tuhoon",
+                dl: "+100k",
+                and: "4.6★ (2.63K)",
+                ios: "4.7★ (654)",
+              },
+              {
+                r: 3,
+                app: "Wellable",
+                dl: "+100k",
+                and: "–",
+                ios: "4.5★ (2.8K)",
+              },
+              {
+                r: 4,
+                app: "BetterUp",
+                dl: "+50k",
+                and: "–",
+                ios: "4.5★ (423)",
+              },
+              {
+                r: 5,
+                app: "MantraCare",
+                dl: "+50k",
+                and: "–",
+                ios: "1.0★ (1)",
+              },
+              {
+                r: 6,
+                app: "Takalam",
+                dl: "+10k",
+                and: "3.2★ (52)",
+                ios: "5.0★ (1)",
+              },
               { r: 7, app: "VIWELL", dl: "+1k", and: "–", ios: "5.0★ (2)" },
-              { r: 8, app: "Wellness360", dl: "+1k", and: "–", ios: "4.0★ (1)" },
+              {
+                r: 8,
+                app: "Wellness360",
+                dl: "+1k",
+                and: "–",
+                ios: "4.0★ (1)",
+              },
               { r: 9, app: "Woliba", dl: "+1k", and: "–", ios: "2.7★ (65)" },
               { r: 10, app: "Wellics", dl: "+100", and: "–", ios: "–" },
               { r: 11, app: "MindTales", dl: "–", and: "–", ios: "–" },
             ].map((row) => (
-              <TableRow key={row.app} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-                <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>{row.r}</TableCell>
-                <TableCell sx={{ color: "text.secondary", fontWeight: 500 }}>{row.app}</TableCell>
+              <TableRow
+                key={row.app}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
+                <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>
+                  {row.r}
+                </TableCell>
+                <TableCell sx={{ color: "text.secondary", fontWeight: 500 }}>
+                  {row.app}
+                </TableCell>
                 <TableCell sx={{ color: "text.secondary" }}>{row.dl}</TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>{row.and}</TableCell>
-                <TableCell sx={{ color: "text.secondary" }}>{row.ios}</TableCell>
+                <TableCell sx={{ color: "text.secondary" }}>
+                  {row.and}
+                </TableCell>
+                <TableCell sx={{ color: "text.secondary" }}>
+                  {row.ios}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}>
+      <Typography
+        variant="h6"
+        sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
+      >
         Comparative Analysis – Coverage by Dimension
       </Typography>
-      <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 2 }}>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        sx={{ display: "block", mb: 2 }}
+      >
         High = Strong coverage · Low = Limited or no coverage
       </Typography>
-      <TableContainer component={Paper} sx={{ mb: 4, ...card, overflowX: "auto" }}>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 4, ...card, overflowX: "auto" }}
+      >
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              {["APP", "MENTAL", "EMOTIONAL", "PHYSICAL", "PURPOSE", "FINANCIAL"].map((h) => (
-                <TableCell key={h} sx={{ fontWeight: 700, color: "primary.light" }}>{h}</TableCell>
+              {[
+                "APP",
+                "MENTAL",
+                "EMOTIONAL",
+                "PHYSICAL",
+                "PURPOSE",
+                "FINANCIAL",
+              ].map((h) => (
+                <TableCell
+                  key={h}
+                  sx={{ fontWeight: 700, color: "primary.light" }}
+                >
+                  {h}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {[
-              { app: "Happify", m: "High", e: "High", p: "Low", pur: "High", f: "Low" },
-              { app: "Tuhoon", m: "High", e: "High", p: "Low", pur: "Low", f: "Low" },
-              { app: "Wellable", m: "High", e: "High", p: "High", pur: "High", f: "Low" },
-              { app: "BetterUp", m: "High", e: "High", p: "Low", pur: "High", f: "Low" },
-              { app: "MantraCare", m: "High", e: "High", p: "High", pur: "High", f: "Low" },
-              { app: "Takalam", m: "High", e: "High", p: "Low", pur: "Low", f: "Low" },
-              { app: "VIWELL", m: "High", e: "High", p: "High", pur: "High", f: "Low" },
-              { app: "Wellness360", m: "High", e: "High", p: "High", pur: "High", f: "Low" },
-              { app: "Woliba", m: "High", e: "High", p: "High", pur: "High", f: "High" },
-              { app: "Wellics", m: "High", e: "High", p: "High", pur: "High", f: "Low" },
-              { app: "MindTales", m: "High", e: "High", p: "Low", pur: "High", f: "Low" },
+              {
+                app: "Happify",
+                m: "High",
+                e: "High",
+                p: "Low",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "Tuhoon",
+                m: "High",
+                e: "High",
+                p: "Low",
+                pur: "Low",
+                f: "Low",
+              },
+              {
+                app: "Wellable",
+                m: "High",
+                e: "High",
+                p: "High",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "BetterUp",
+                m: "High",
+                e: "High",
+                p: "Low",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "MantraCare",
+                m: "High",
+                e: "High",
+                p: "High",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "Takalam",
+                m: "High",
+                e: "High",
+                p: "Low",
+                pur: "Low",
+                f: "Low",
+              },
+              {
+                app: "VIWELL",
+                m: "High",
+                e: "High",
+                p: "High",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "Wellness360",
+                m: "High",
+                e: "High",
+                p: "High",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "Woliba",
+                m: "High",
+                e: "High",
+                p: "High",
+                pur: "High",
+                f: "High",
+              },
+              {
+                app: "Wellics",
+                m: "High",
+                e: "High",
+                p: "High",
+                pur: "High",
+                f: "Low",
+              },
+              {
+                app: "MindTales",
+                m: "High",
+                e: "High",
+                p: "Low",
+                pur: "High",
+                f: "Low",
+              },
             ].map((row) => (
-              <TableRow key={row.app} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-                <TableCell sx={{ fontWeight: 500, color: "text.secondary" }}>{row.app}</TableCell>
+              <TableRow
+                key={row.app}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
+                <TableCell sx={{ fontWeight: 500, color: "text.secondary" }}>
+                  {row.app}
+                </TableCell>
                 {[row.m, row.e, row.p, row.pur, row.f].map((v, i) => (
-                  <TableCell key={i} sx={{ color: v === "High" ? "primary.light" : "text.secondary" }}>{v}</TableCell>
+                  <TableCell
+                    key={i}
+                    sx={{
+                      color: v === "High" ? "primary.light" : "text.secondary",
+                    }}
+                  >
+                    {v}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}
@@ -348,47 +524,122 @@ function WorcareResearchContent() {
         </Table>
       </TableContainer>
 
-      <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}>
+      <Typography
+        variant="h6"
+        sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}
+      >
         Competitive Feature Comparison
       </Typography>
-      <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 1 }}>
+      <Typography
+        variant="caption"
+        color="text.secondary"
+        sx={{ display: "block", mb: 1 }}
+      >
         Y = Feature present · N = Feature absent
       </Typography>
-      <TableContainer component={Paper} sx={{ mb: 2, ...card, overflow: "hidden" }}>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 2, ...card, overflow: "hidden" }}
+      >
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light", minWidth: 160 }}>APP / FEATURE</TableCell>
-              {["Happify", "Tuhoon", "Wellable", "BetterUp", "MantraCare", "Takalam", "VIWELL", "Wellness360", "Woliba", "Wellics", "MindTales"].map((app) => (
-                <TableCell key={app} align="center" sx={{ fontWeight: 700, color: "primary.light", minWidth: 68 }}>{app}</TableCell>
+              <TableCell
+                sx={{ fontWeight: 700, color: "primary.light", minWidth: 160 }}
+              >
+                APP / FEATURE
+              </TableCell>
+              {[
+                "Happify",
+                "Tuhoon",
+                "Wellable",
+                "BetterUp",
+                "MantraCare",
+                "Takalam",
+                "VIWELL",
+                "Wellness360",
+                "Woliba",
+                "Wellics",
+                "MindTales",
+              ].map((app) => (
+                <TableCell
+                  key={app}
+                  align="center"
+                  sx={{ fontWeight: 700, color: "primary.light", minWidth: 68 }}
+                >
+                  {app}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {[
-              { f: "Mental Health Programs", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Emotional Support / Therapy", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+              {
+                f: "Mental Health Programs",
+                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+              },
+              {
+                f: "Emotional Support / Therapy",
+                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+              },
               { f: "1-on-1 Coaching", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "AI-Driven Personalization", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Physical Activity Tracking", y: [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0] },
-              { f: "Fitness Device Integration", y: [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
+              {
+                f: "AI-Driven Personalization",
+                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+              },
+              {
+                f: "Physical Activity Tracking",
+                y: [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0],
+              },
+              {
+                f: "Fitness Device Integration",
+                y: [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0],
+              },
               { f: "Nutrition Programs", y: [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
               { f: "Sleep Programs", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Stress Management Tools", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
+              {
+                f: "Stress Management Tools",
+                y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+              },
               { f: "Guided Meditations", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
               { f: "Goal Setting", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
               { f: "Progress Tracking", y: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Gamification / Challenges", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
-              { f: "Rewards / Incentives", y: [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
+              {
+                f: "Gamification / Challenges",
+                y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
+              },
+              {
+                f: "Rewards / Incentives",
+                y: [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0],
+              },
               { f: "Financial Wellness", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0] },
               { f: "Social / Community", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Enterprise Dashboard / HR", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1] },
-              { f: "Corporate Wellness Programs", y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1] },
+              {
+                f: "Enterprise Dashboard / HR",
+                y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+              },
+              {
+                f: "Corporate Wellness Programs",
+                y: [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+              },
             ].map((row) => (
-              <TableRow key={row.f} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-                <TableCell sx={{ fontWeight: 500, color: "text.secondary" }}>{row.f}</TableCell>
+              <TableRow
+                key={row.f}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
+                <TableCell sx={{ fontWeight: 500, color: "text.secondary" }}>
+                  {row.f}
+                </TableCell>
                 {row.y.map((v, i) => (
-                  <TableCell key={i} align="center" sx={{ color: v ? "primary.light" : "text.secondary" }}>{v ? "Y" : "N"}</TableCell>
+                  <TableCell
+                    key={i}
+                    align="center"
+                    sx={{ color: v ? "primary.light" : "text.secondary" }}
+                  >
+                    {v ? "Y" : "N"}
+                  </TableCell>
                 ))}
               </TableRow>
             ))}
@@ -396,16 +647,28 @@ function WorcareResearchContent() {
         </Table>
       </TableContainer>
 
-      <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, mt: 4, color: "primary.light" }}>
+      <Typography
+        variant="h6"
+        sx={{ fontWeight: 700, mb: 2, mt: 4, color: "primary.light" }}
+      >
         The 5-Dimension Coverage Gap
       </Typography>
-      <TableContainer component={Paper} sx={{ mb: 4, ...card, overflowX: "auto" }}>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 4, ...card, overflowX: "auto" }}
+      >
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Dimension</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Apps Covering It</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Market Saturation</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Dimension
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Apps Covering It
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Market Saturation
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -416,8 +679,15 @@ function WorcareResearchContent() {
               { dim: "Purpose", apps: "8 / 11", sat: "🟡 Moderately covered" },
               { dim: "Financial", apps: "1 / 11", sat: "🟢 Nearly empty" },
             ].map((r) => (
-              <TableRow key={r.dim} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-                <TableCell sx={{ fontWeight: 600, color: "text.secondary" }}>{r.dim}</TableCell>
+              <TableRow
+                key={r.dim}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
+                <TableCell sx={{ fontWeight: 600, color: "text.secondary" }}>
+                  {r.dim}
+                </TableCell>
                 <TableCell sx={{ color: "text.secondary" }}>{r.apps}</TableCell>
                 <TableCell sx={{ color: "text.secondary" }}>{r.sat}</TableCell>
               </TableRow>
@@ -426,16 +696,36 @@ function WorcareResearchContent() {
         </Table>
       </TableContainer>
 
-      <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}>Feature-Level Gap Analysis</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.6 }}>
-        These features exist in 90–100% of competitors. Users expect them by default. Not having them is an immediate disqualifier.
+      <Typography
+        variant="h6"
+        sx={{ fontWeight: 700, mb: 2, color: "primary.light" }}
+      >
+        Feature-Level Gap Analysis
       </Typography>
-      <TableContainer component={Paper} sx={{ mb: 4, ...card, overflowX: "auto" }}>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ mb: 2, lineHeight: 1.6 }}
+      >
+        These features exist in 90–100% of competitors. Users expect them by
+        default. Not having them is an immediate disqualifier.
+      </Typography>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 4, ...card, overflowX: "auto" }}
+      >
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Feature</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }} align="right">Coverage</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Feature
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: 700, color: "primary.light" }}
+                align="right"
+              >
+                Coverage
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -448,25 +738,55 @@ function WorcareResearchContent() {
               { f: "AI-Driven Personalization", c: "10 / 11 — 91%" },
               { f: "Guided Meditations", c: "9 / 11 — 82%" },
             ].map((r) => (
-              <TableRow key={r.f} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
+              <TableRow
+                key={r.f}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
                 <TableCell sx={{ color: "text.secondary" }}>{r.f}</TableCell>
-                <TableCell align="right" sx={{ color: "primary.light", fontWeight: 600 }}>{r.c}</TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ color: "primary.light", fontWeight: 600 }}
+                >
+                  {r.c}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5, mt: 3, color: "primary.light" }}>Competitive Features</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.6 }}>
-        Present in roughly half the market. Having them signals maturity. Missing them signals a gap.
+      <Typography
+        variant="subtitle2"
+        sx={{ fontWeight: 700, mb: 1.5, mt: 3, color: "primary.light" }}
+      >
+        Competitive Features
       </Typography>
-      <TableContainer component={Paper} sx={{ mb: 4, ...card, overflowX: "auto" }}>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ mb: 2, lineHeight: 1.6 }}
+      >
+        Present in roughly half the market. Having them signals maturity.
+        Missing them signals a gap.
+      </Typography>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 4, ...card, overflowX: "auto" }}
+      >
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Feature</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }} align="right">Coverage</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Feature
+              </TableCell>
+              <TableCell
+                sx={{ fontWeight: 700, color: "primary.light" }}
+                align="right"
+              >
+                Coverage
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -479,64 +799,160 @@ function WorcareResearchContent() {
               { f: "Corporate Wellness Programs", c: "5 / 11 — 45%" },
               { f: "Fitness Device Integration", c: "5 / 11 — 45%" },
             ].map((r) => (
-              <TableRow key={r.f} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
+              <TableRow
+                key={r.f}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
                 <TableCell sx={{ color: "text.secondary" }}>{r.f}</TableCell>
-                <TableCell align="right" sx={{ color: "primary.light", fontWeight: 600 }}>{r.c}</TableCell>
+                <TableCell
+                  align="right"
+                  sx={{ color: "primary.light", fontWeight: 600 }}
+                >
+                  {r.c}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5, mt: 3, color: "primary.light" }}>Differentiation Features</Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 2, lineHeight: 1.6 }}>
-        Rare in the market. Covering these creates a clear reason to choose WorCare over anyone else.
+      <Typography
+        variant="subtitle2"
+        sx={{ fontWeight: 700, mb: 1.5, mt: 3, color: "primary.light" }}
+      >
+        Differentiation Features
       </Typography>
-      <TableContainer component={Paper} sx={{ mb: 4, ...card, overflowX: "auto" }}>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ mb: 2, lineHeight: 1.6 }}
+      >
+        Rare in the market. Covering these creates a clear reason to choose
+        WorCare over anyone else.
+      </Typography>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 4, ...card, overflowX: "auto" }}
+      >
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Feature</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Coverage</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Why It Matters</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Feature
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Coverage
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Why It Matters
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-              <TableCell sx={{ color: "text.secondary" }}>Sleep Programs</TableCell>
-              <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>4 / 11 — 36%</TableCell>
-              <TableCell sx={{ color: "text.secondary" }}>Sleep directly drives productivity — employers care deeply about this</TableCell>
+            <TableRow
+              sx={{
+                "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+              }}
+            >
+              <TableCell sx={{ color: "text.secondary" }}>
+                Sleep Programs
+              </TableCell>
+              <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>
+                4 / 11 — 36%
+              </TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>
+                Sleep directly drives productivity — employers care deeply about
+                this
+              </TableCell>
             </TableRow>
-            <TableRow sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-              <TableCell sx={{ color: "text.secondary" }}>Financial Wellness</TableCell>
-              <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>1 / 11 — 9%</TableCell>
-              <TableCell sx={{ color: "text.secondary" }}>The #1 source of employee stress globally — almost no app addresses it</TableCell>
+            <TableRow
+              sx={{
+                "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+              }}
+            >
+              <TableCell sx={{ color: "text.secondary" }}>
+                Financial Wellness
+              </TableCell>
+              <TableCell sx={{ color: "primary.light", fontWeight: 600 }}>
+                1 / 11 — 9%
+              </TableCell>
+              <TableCell sx={{ color: "text.secondary" }}>
+                The #1 source of employee stress globally — almost no app
+                addresses it
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
 
-      <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, mt: 4, color: "primary.light" }}>Competitor Weakness Breakdown</Typography>
-      <TableContainer component={Paper} sx={{ mb: 4, ...card, overflowX: "auto" }}>
+      <Typography
+        variant="h6"
+        sx={{ fontWeight: 700, mb: 2, mt: 4, color: "primary.light" }}
+      >
+        Competitor Weakness Breakdown
+      </Typography>
+      <TableContainer
+        component={Paper}
+        sx={{ mb: 4, ...card, overflowX: "auto" }}
+      >
         <Table size="small">
           <TableHead>
             <TableRow sx={{ bgcolor: "rgba(190, 14, 91, 0.12)" }}>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Competitor</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>Key Gap</TableCell>
-              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>WorCare Advantage</TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Competitor
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                Key Gap
+              </TableCell>
+              <TableCell sx={{ fontWeight: 700, color: "primary.light" }}>
+                WorCare Advantage
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {[
-              { comp: "Happify", gap: "No physical, no financial", adv: "Cover both and you outclass it across the board" },
-              { comp: "Tuhoon", gap: "No physical, no purpose, no financial", adv: "Strong on mental only — very limited scope" },
-              { comp: "BetterUp", gap: "No physical, no financial", adv: "Premium-priced but incomplete on 2 dimensions" },
-              { comp: "Takalam", gap: "Covers only mental & emotional", adv: "Essentially a therapy app, not a well-being platform" },
-              { comp: "Woliba", gap: "Only competitor with financial — but 1k downloads", adv: "Proves the demand exists, hasn't executed on growth" },
-              { comp: "MantraCare / Wellable", gap: "Missing financial only", adv: "Close to full — WorCare must also cover financial to beat them" },
+              {
+                comp: "Happify",
+                gap: "No physical, no financial",
+                adv: "Cover both and you outclass it across the board",
+              },
+              {
+                comp: "Tuhoon",
+                gap: "No physical, no purpose, no financial",
+                adv: "Strong on mental only — very limited scope",
+              },
+              {
+                comp: "BetterUp",
+                gap: "No physical, no financial",
+                adv: "Premium-priced but incomplete on 2 dimensions",
+              },
+              {
+                comp: "Takalam",
+                gap: "Covers only mental & emotional",
+                adv: "Essentially a therapy app, not a well-being platform",
+              },
+              {
+                comp: "Woliba",
+                gap: "Only competitor with financial — but 1k downloads",
+                adv: "Proves the demand exists, hasn't executed on growth",
+              },
+              {
+                comp: "MantraCare / Wellable",
+                gap: "Missing financial only",
+                adv: "Close to full — WorCare must also cover financial to beat them",
+              },
             ].map((r) => (
-              <TableRow key={r.comp} sx={{ "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" } }}>
-                <TableCell sx={{ fontWeight: 600, color: "text.secondary" }}>{r.comp}</TableCell>
+              <TableRow
+                key={r.comp}
+                sx={{
+                  "&:nth-of-type(even)": { bgcolor: "rgba(255,255,255,0.02)" },
+                }}
+              >
+                <TableCell sx={{ fontWeight: 600, color: "text.secondary" }}>
+                  {r.comp}
+                </TableCell>
                 <TableCell sx={{ color: "text.secondary" }}>{r.gap}</TableCell>
                 <TableCell sx={{ color: "primary.light" }}>{r.adv}</TableCell>
               </TableRow>
@@ -1180,18 +1596,16 @@ export default function ResearchSection() {
             variant="body2"
             sx={{ color: "text.secondary", mb: 3, lineHeight: 1.7 }}
           >
-            Ongoing research into emerging AI applications, competitive
-            product models, consulting technology trends, and scalable digital
-            business opportunities.
+            Ongoing research into emerging AI applications, competitive product
+            models, consulting technology trends, and scalable digital business
+            opportunities.
           </Typography>
           <AIStudiesContent />
         </ResearchAccordion>
 
         <ResearchAccordion
           id="rd-worcare"
-          icon={
-            <FavoriteIcon sx={{ color: "primary.main", fontSize: 24 }} />
-          }
+          icon={<FavoriteIcon sx={{ color: "primary.main", fontSize: 24 }} />}
           title="Worcare Project"
           subtitle="Research into employee wellbeing platforms, workplace engagement models, and digital wellness solutions to support WorCare's product strategy."
           chips={[
@@ -1232,9 +1646,7 @@ export default function ResearchSection() {
 
         <ResearchAccordion
           id="rd-sparkthon"
-          icon={
-            <ViewInArIcon sx={{ color: "primary.main", fontSize: 24 }} />
-          }
+          icon={<ViewInArIcon sx={{ color: "primary.main", fontSize: 24 }} />}
           title="SparkThon Platform"
           subtitle="Research into venture platform models, startup incubation frameworks, and digital pipeline management systems."
           chips={[
