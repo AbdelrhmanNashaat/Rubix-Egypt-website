@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Box from "@mui/material/Box";
@@ -34,6 +34,11 @@ import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import ViewInArIcon from "@mui/icons-material/ViewInAr";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import SectionWrapper from "@/components/ui/SectionWrapper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const card = {
   bgcolor: "rgba(255,255,255,0.05)",
@@ -2377,224 +2382,177 @@ function RashadContent() {
   );
 }
 
-function WorcareSectionLabel({ children }: { children: React.ReactNode }) {
+function WorcareModulesSwiper({
+  modules,
+}: {
+  modules: { n: string; name: string; desc: string }[];
+}) {
   return (
-    <Typography
-      variant="overline"
+    <Box
       sx={{
-        color: "primary.main",
-        letterSpacing: 2,
-        fontWeight: 600,
-        display: "block",
-        mb: 1,
+        "& .swiper": { pb: "44px" },
+        "& .swiper-slide": { height: "auto", display: "flex" },
+        "& .swiper-pagination": { bottom: 0 },
+        "& .swiper-pagination-bullet": {
+          width: 6,
+          height: 6,
+          bgcolor: "rgba(255,255,255,0.2)",
+          opacity: 1,
+          transition: "width 0.2s, border-radius 0.2s, background 0.2s",
+          margin: "0 3px !important",
+        },
+        "& .swiper-pagination-bullet-active": {
+          bgcolor: "primary.main",
+          width: 20,
+          borderRadius: 4,
+        },
+        "& .swiper-button-prev, & .swiper-button-next": {
+          top: "calc(50% - 22px)",
+          width: 36,
+          height: 36,
+          borderRadius: "50%",
+          bgcolor: "rgba(255,255,255,0.06)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          color: "rgba(255,255,255,0.7)",
+          transition: "all 0.2s",
+          "&:hover": { bgcolor: "rgba(190,14,91,0.2)", color: "#fff" },
+          "&::after": { fontSize: "0.8rem", fontWeight: 800 },
+        },
+        "& .swiper-button-disabled": { opacity: 0.15 },
       }}
     >
-      {children}
-    </Typography>
-  );
-}
-
-const worcareHideScrollbar = {
-  scrollbarWidth: "none",
-  msOverflowStyle: "none",
-  "&::-webkit-scrollbar": { display: "none" },
-} as const;
-
-function WorcareOperatingCycle() {
-  const steps = [
-    {
-      name: "Onboard",
-      desc: "Organization joins, departments configured, employees invited",
-    },
-    {
-      name: "Assess",
-      desc: "Employees complete 100-question holistic wellbeing assessment (20 questions per pillar)",
-    },
-    {
-      name: "Diagnose",
-      desc: "HR views baseline: wellbeing index, pillar gaps, burnout risk, engagement risk indicators",
-    },
-    {
-      name: "Personalize",
-      desc: "Each employee receives content, programs, habits, and events based on their scores",
-    },
-    {
-      name: "Activate",
-      desc: "Employees engage with structured programs, webinars, events, and challenges",
-    },
-    {
-      name: "Support",
-      desc: "Organizations deploy EAP counseling, workshops, and enterprise interventions",
-    },
-    {
-      name: "Reassess",
-      desc: "Employees retake assessment. Progress measured against baseline. New cycle begins.",
-    },
-  ];
-
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const ratiosRef = useRef<number[]>(steps.map(() => 0));
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          const idx = Number((e.target as HTMLElement).dataset.step);
-          if (!Number.isNaN(idx)) ratiosRef.current[idx] = e.intersectionRatio;
-        });
-        let best = 0;
-        let bestR = -1;
-        ratiosRef.current.forEach((r, i) => {
-          if (r > bestR) {
-            bestR = r;
-            best = i;
-          }
-        });
-        setActive(bestR >= 0.2 ? best : 0);
-      },
-      { threshold: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 1] },
-    );
-
-    itemRefs.current.forEach((el) => {
-      if (el) obs.observe(el);
-    });
-
-    return () => obs.disconnect();
-  }, []);
-
-  return (
-    <Box component="ol" sx={{ listStyle: "none", m: 0, p: 0 }}>
-      {steps.map((s, i) => (
-        <Box
-          key={s.name}
-          component="li"
-          ref={(el) => {
-            itemRefs.current[i] = el as HTMLDivElement | null;
-          }}
-          data-step={i}
-          sx={{
-            display: "flex",
-            gap: 2,
-            mb: 2.5,
-            p: 2,
-            borderRadius: 2,
-            border: "1px solid",
-            borderColor:
-              active === i ? "primary.main" : "rgba(255,255,255,0.1)",
-            bgcolor:
-              active === i
-                ? "rgba(190, 14, 91, 0.12)"
-                : "rgba(255,255,255,0.03)",
-            transition: "border-color 0.25s ease, background 0.25s ease",
-          }}
-        >
-          <Box
-            sx={{
-              flexShrink: 0,
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 700,
-              fontSize: "0.9rem",
-              bgcolor: active === i ? "primary.main" : "rgba(255,255,255,0.08)",
-              color: active === i ? "#fff" : "text.secondary",
-            }}
-          >
-            {i + 1}
-          </Box>
-          <Box sx={{ minWidth: 0 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
-              {s.name}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ lineHeight: 1.65 }}
+      <Swiper
+        modules={[Pagination, Navigation]}
+        spaceBetween={12}
+        slidesPerView={1.15}
+        grabCursor
+        pagination={{ clickable: true }}
+        navigation
+        breakpoints={{
+          480: { slidesPerView: 1.35 },
+          640: { slidesPerView: 1.8 },
+          900: { slidesPerView: 2.4, spaceBetween: 14 },
+          1200: { slidesPerView: 3, spaceBetween: 16 },
+        }}
+      >
+        {modules.map((m) => (
+          <SwiperSlide key={m.n}>
+            <Card
+              sx={{
+                ...innerCard,
+                p: 2.5,
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                transition: "border-color 0.2s",
+                "&:hover": { borderColor: "rgba(190,14,91,0.45)" },
+              }}
             >
-              {s.desc}
-            </Typography>
-          </Box>
-        </Box>
-      ))}
+              <Typography
+                variant="subtitle2"
+                sx={{ color: "primary.main", fontWeight: 700, mb: 0.5 }}
+              >
+                {m.n}. {m.name}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.7, flex: 1 }}
+              >
+                {m.desc}
+              </Typography>
+            </Card>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </Box>
   );
 }
 
-function WorcareMaturityStep({ title, body }: { title: string; body: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+function WorcareOperatingCycle() {
+  const steps = [
+    { name: "Onboard", desc: "Organization joins, departments configured, employees invited" },
+    { name: "Assess", desc: "Employees complete 100-question holistic wellbeing assessment (20 questions per pillar)" },
+    { name: "Diagnose", desc: "HR views baseline: wellbeing index, pillar gaps, burnout risk, engagement risk indicators" },
+    { name: "Personalize", desc: "Each employee receives content, programs, habits, and events based on their scores" },
+    { name: "Activate", desc: "Employees engage with structured programs, webinars, events, and challenges" },
+    { name: "Support", desc: "Organizations deploy EAP counseling, workshops, and enterprise interventions" },
+    { name: "Reassess", desc: "Employees retake assessment. Progress measured against baseline. New cycle begins." },
+  ];
 
   return (
-    <Box
-      ref={ref}
-      sx={{
-        position: "relative",
-        pl: 3,
-        pb: 2.5,
-        "&::before": {
-          content: '""',
-          position: "absolute",
-          left: 11,
-          top: 10,
-          bottom: -4,
-          width: 2,
-          bgcolor: "rgba(255,255,255,0.12)",
-        },
-        "&:last-of-type::before": { display: "none" },
-      }}
-    >
+    <Grid container spacing={2}>
+      {steps.map((s, i) => (
+        <Grid item xs={12} sm={6} key={s.name}>
+          <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+            <Typography
+              variant="subtitle2"
+              fontWeight={700}
+              sx={{ color: "primary.main", mb: 0.5 }}
+            >
+              {i + 1}. {s.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
+              {s.desc}
+            </Typography>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
+
+function WorcareMaturityStep({
+  title,
+  body,
+  index,
+  total,
+}: {
+  title: string;
+  body: string;
+  index: number;
+  total: number;
+}) {
+  const filled = index < total;
+
+  return (
+    <Box sx={{ position: "relative", pb: 3 }}>
       <Box
         sx={{
           position: "absolute",
-          left: 0,
-          top: 4,
-          width: 22,
-          height: 22,
+          left: { xs: -22, sm: -30 },
+          top: 0,
+          width: 14,
+          height: 14,
           borderRadius: "50%",
+          bgcolor: filled ? "primary.main" : "transparent",
           border: "2px solid",
-          borderColor: visible ? "primary.main" : "rgba(255,255,255,0.2)",
-          bgcolor: "background.paper",
-          transition: "border-color 0.4s ease, transform 0.4s ease",
-          transform: visible ? "scale(1)" : "scale(0.85)",
+          borderColor: "primary.main",
         }}
       />
-      <Box
-        sx={{
-          pl: 2,
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(10px)",
-          transition: "opacity 0.45s ease, transform 0.45s ease",
-        }}
-      >
-        <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>
+      <Card sx={{ ...card, p: 2, ml: 1 }}>
+        <Chip
+          label={`LEVEL ${index + 1}`}
+          size="small"
+          sx={{
+            bgcolor: "primary.900",
+            color: "primary.light",
+            fontWeight: 700,
+            fontSize: "0.7rem",
+            mb: 1,
+          }}
+        />
+        <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 0.5 }}>
           {title}
         </Typography>
         <Typography
           variant="body2"
           color="text.secondary"
-          sx={{ lineHeight: 1.65 }}
+          sx={{ lineHeight: 1.7 }}
         >
           {body}
         </Typography>
-      </Box>
+      </Card>
     </Box>
   );
 }
@@ -2804,588 +2762,479 @@ function WorcareContent() {
   return (
     <>
       {/* Section 1 — Video */}
-      <Box sx={{ mb: 4 }}>
+      <Card
+        sx={{
+          ...card,
+          p: 0,
+          mb: 3,
+          overflow: "hidden",
+          position: "relative",
+          isolation: "isolate",
+        }}
+      >
         <Box
+          component="video"
+          src="/videos/worcare.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          aria-hidden
+          tabIndex={-1}
           sx={{
-            width: "100%",
-            borderRadius: 3,
-            overflow: "hidden",
-            bgcolor: "rgba(0,0,0,0.35)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            position: "absolute",
+            inset: "-20%",
+            width: "140%",
+            height: "140%",
+            objectFit: "cover",
+            filter: "blur(24px) brightness(0.5)",
+            zIndex: 0,
+            pointerEvents: "none",
           }}
-        >
-          <Box sx={{ position: "relative", width: "100%", pt: "56.25%" }}>
-            <Box
-              component="video"
-              className="w-full rounded-xl object-cover"
-              src="/videos/worcare.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              sx={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-            />
-          </Box>
+        />
+        <Box sx={{ position: "relative", pt: "56.25%", zIndex: 1 }}>
+          <Box
+            component="video"
+            src="/videos/worcare.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls
+            sx={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
         </Box>
-      </Box>
+      </Card>
 
       {/* Section 2 — The Problem */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>THE PROBLEM</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
-          Wellbeing Initiatives Are Broken
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        The Problem
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        Wellbeing Initiatives Are Broken
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 3 }}>
+        {problemCards.map((c) => (
+          <Grid item xs={12} sm={6} md={4} key={c.title}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                fontWeight={700}
+                sx={{ color: "primary.main", mb: 0.5 }}
+              >
+                {c.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.7 }}
+              >
+                {c.text}
+              </Typography>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      <Card sx={{ ...card, p: 2.5, mb: 4 }}>
+        <Typography variant="body2" sx={{ ...bodyText, fontStyle: "italic" }}>
+          &ldquo;WorCare transforms wellbeing from a temporary initiative into a
+          sustainable organizational capability.&rdquo;
         </Typography>
-        <Grid container spacing={2} sx={{ mb: 2 }}>
-          {problemCards.map((c) => (
-            <Grid item xs={12} md={4} key={c.title}>
-              <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                <Typography variant="body2" sx={{ fontWeight: 700, mb: 1 }}>
-                  {c.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.65 }}
-                >
-                  {c.text}
-                </Typography>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-        <Card
-          sx={{
-            ...card,
-            p: 2.5,
-            borderLeft: "4px solid",
-            borderColor: "primary.main",
-            bgcolor: "rgba(190, 14, 91, 0.08)",
-          }}
-        >
-          <Typography variant="body2" sx={{ ...bodyText, fontStyle: "italic" }}>
-            &ldquo;WorCare transforms wellbeing from a temporary initiative into
-            a sustainable organizational capability.&rdquo;
-          </Typography>
-        </Card>
-      </Box>
+      </Card>
 
       {/* Section 3 — Five Pillars */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>THE FRAMEWORK</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
-          Built on Five Wellbeing Pillars
-        </Typography>
-        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
-          Every assessment, program, content piece, event, and dashboard in
-          WorCare is built around these five scientifically grounded dimensions
-          of employee wellbeing.
-        </Typography>
-        <Box
-          sx={{
-            display: { xs: "flex", md: "grid" },
-            gridTemplateColumns: { md: "repeat(5, minmax(0, 1fr))" },
-            gap: 2,
-            overflowX: { xs: "auto", md: "visible" },
-            scrollSnapType: { xs: "x mandatory", md: "none" },
-            ...worcareHideScrollbar,
-            pb: { xs: 0.5, md: 0 },
-          }}
-        >
-          {pillars.map((p) => (
-            <Card
-              key={p.title}
-              sx={{
-                ...innerCard,
-                p: 2,
-                flex: { xs: "0 0 min(280px, 88vw)", md: "unset" },
-                scrollSnapAlign: { xs: "start", md: "unset" },
-              }}
-            >
-              <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.75 }}>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        Five Wellbeing Pillars
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        Every assessment, program, content piece, event, and dashboard in
+        WorCare is built around these five scientifically grounded dimensions of
+        employee wellbeing.
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 2 }}>
+        {pillars.map((p) => (
+          <Grid item xs={12} sm={6} md key={p.title}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                fontWeight={700}
+                sx={{ color: "primary.main", mb: 0.5 }}
+              >
                 {p.title}
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
-                sx={{ lineHeight: 1.6 }}
+                sx={{ lineHeight: 1.7 }}
               >
                 {p.text}
               </Typography>
             </Card>
-          ))}
-        </Box>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mt: 2, lineHeight: 1.65 }}
-        >
-          100-question holistic assessment · 20 questions per pillar · Mandatory
-          for every employee before accessing the personalized experience.
-        </Typography>
-      </Box>
+          </Grid>
+        ))}
+      </Grid>
+      <Typography variant="body2" sx={{ color: "text.secondary", mb: 4 }}>
+        100-question holistic assessment · 20 questions per pillar · Mandatory
+        for every employee before accessing the personalized experience.
+      </Typography>
 
       {/* Section 4 — Operating Cycle */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>THE SYSTEM</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
-          A Continuous 7-Stage Operating Cycle
-        </Typography>
-        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
-          WorCare is not a tool — it is a continuous operating cycle that
-          repeats and improves over time.
-        </Typography>
-        <WorcareOperatingCycle />
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ mt: 1, lineHeight: 1.65 }}
-        >
-          Once this cycle completes, it restarts — with better data, stronger
-          programs, and measurable improvement.
-        </Typography>
-      </Box>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        7-Stage Operating Cycle
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        WorCare is not a tool — it is a continuous operating cycle that repeats
+        and improves over time.
+      </Typography>
+      <WorcareOperatingCycle />
+      <Typography variant="body2" sx={{ color: "text.secondary", mt: 1, mb: 4 }}>
+        Once this cycle completes, it restarts — with better data, stronger
+        programs, and measurable improvement.
+      </Typography>
 
       {/* Section 5 — Two Key Indicators */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>INTELLIGENCE</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
-          Two Indicators That Change How HR Leads
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Card sx={{ ...innerCard, p: 3, height: "100%" }}>
-              <Typography
-                sx={{
-                  fontSize: { xs: "2.25rem", sm: "2.75rem" },
-                  fontWeight: 800,
-                  color: "primary.light",
-                  lineHeight: 1.1,
-                  mb: 1,
-                }}
-              >
-                68 / 100
-              </Typography>
-              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
-                Corporate Wellbeing Index
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ lineHeight: 1.65 }}
-              >
-                Measures the current wellbeing state of employees across all
-                five pillars. Answers the question: How healthy is our workforce
-                today?
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Card sx={{ ...innerCard, p: 3, height: "100%" }}>
-              <Typography
-                sx={{
-                  fontSize: { xs: "2.25rem", sm: "2.75rem" },
-                  fontWeight: 800,
-                  color: "primary.light",
-                  lineHeight: 1.1,
-                  mb: 0.25,
-                }}
-              >
-                Level 3
-              </Typography>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: "text.secondary",
-                  display: "block",
-                  mb: 1,
-                  fontWeight: 600,
-                }}
-              >
-                Behavior Change
-              </Typography>
-              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
-                Corporate Wellbeing Maturity Level
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ lineHeight: 1.65 }}
-              >
-                Measures how effectively the organization manages wellbeing —
-                tracking evolution through 5 maturity stages from Awareness to
-                Sustainable Wellbeing Organization.
-              </Typography>
-            </Card>
-          </Grid>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        Two Key Indicators
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Grid item xs={12} md={6}>
+          <Card sx={{ ...innerCard, p: 2.5, height: "100%" }}>
+            <Chip
+              label="68 / 100"
+              size="small"
+              sx={{
+                bgcolor: "rgba(190,14,91,0.15)",
+                color: "primary.light",
+                fontWeight: 700,
+                fontSize: "0.8rem",
+                mb: 1.5,
+              }}
+            />
+            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 0.75 }}>
+              Corporate Wellbeing Index
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ lineHeight: 1.7 }}
+            >
+              Measures the current wellbeing state of employees across all five
+              pillars. Answers the question: How healthy is our workforce today?
+            </Typography>
+          </Card>
         </Grid>
-      </Box>
+        <Grid item xs={12} md={6}>
+          <Card sx={{ ...innerCard, p: 2.5, height: "100%" }}>
+            <Chip
+              label="Level 3 — Behavior Change"
+              size="small"
+              sx={{
+                bgcolor: "rgba(190,14,91,0.15)",
+                color: "primary.light",
+                fontWeight: 700,
+                fontSize: "0.8rem",
+                mb: 1.5,
+              }}
+            />
+            <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 0.75 }}>
+              Corporate Wellbeing Maturity Level
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ lineHeight: 1.7 }}
+            >
+              Measures how effectively the organization manages wellbeing —
+              tracking evolution through 5 maturity stages from Awareness to
+              Sustainable Wellbeing Organization.
+            </Typography>
+          </Card>
+        </Grid>
+      </Grid>
 
       {/* Section 6 — Maturity Ladder */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>MATURITY MODEL</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
-          Five Levels of Organizational Growth
-        </Typography>
-        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
-          The Maturity Model tracks organizational capability — not just
-          employee scores, but the organization&apos;s ability to sustain
-          wellbeing over time.
-        </Typography>
-        <Card sx={{ ...card, p: 2.5, mb: 2 }}>
-          {maturityLevels.map((lvl) => (
-            <WorcareMaturityStep
-              key={lvl.title}
-              title={lvl.title}
-              body={lvl.body}
-            />
-          ))}
-        </Card>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ lineHeight: 1.65 }}
-        >
-          Maturity is calculated from: participation rate, program completion,
-          behavioral adoption, leadership engagement, and score improvement over
-          time.
-        </Typography>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        Five Levels of Organizational Growth
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        The Maturity Model tracks organizational capability — not just employee
+        scores, but the organization&apos;s ability to sustain wellbeing over
+        time.
+      </Typography>
+      <Box sx={{ position: "relative", pl: { xs: 3, sm: 4 }, mb: 2 }}>
+        <Box
+          sx={{
+            position: "absolute",
+            left: { xs: 6, sm: 8 },
+            top: 0,
+            bottom: 0,
+            width: 2,
+            bgcolor: "primary.main",
+            borderRadius: 1,
+            opacity: 0.4,
+          }}
+        />
+        {maturityLevels.map((lvl, i) => (
+          <WorcareMaturityStep key={lvl.title} title={lvl.title} body={lvl.body} index={i} total={maturityLevels.length} />
+        ))}
       </Box>
+      <Typography variant="body2" sx={{ color: "text.secondary", mb: 4 }}>
+        Maturity is calculated from: participation rate, program completion,
+        behavioral adoption, leadership engagement, and score improvement over
+        time.
+      </Typography>
 
       {/* Section 7 — Architecture */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>ARCHITECTURE</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
-          Five Integrated System Layers
-        </Typography>
-        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
-          WorCare is not a list of features — it is five layers working together
-          as one operating system.
-        </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          {layers.map((L) => (
-            <Card key={L.name} sx={{ ...innerCard, p: 2 }}>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        Five Integrated System Layers
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        WorCare is not a list of features — it is five layers working together
+        as one operating system.
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        {layers.map((L, i) => (
+          <Grid item xs={12} sm={6} key={L.name}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
               <Typography
                 variant="subtitle2"
-                sx={{ fontWeight: 700, mb: 0.75 }}
+                fontWeight={700}
+                sx={{ color: "primary.main", mb: 0.5 }}
               >
-                {L.name}
+                {i + 1}. {L.name}
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
-                sx={{ lineHeight: 1.65 }}
+                sx={{ lineHeight: 1.7 }}
               >
                 {L.modules}
               </Typography>
             </Card>
-          ))}
-        </Box>
-      </Box>
+          </Grid>
+        ))}
+      </Grid>
 
       {/* Section 8 — Modules */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>MODULES</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
-          15 Functional Modules
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            gap: 2,
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            pb: 1,
-            ...worcareHideScrollbar,
-          }}
-        >
-          {modulesList.map((m) => (
-            <Card
-              key={m.n}
-              sx={{
-                ...innerCard,
-                p: 2,
-                flex: "0 0 280px",
-                width: 280,
-                maxWidth: "85vw",
-                scrollSnapAlign: "start",
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{
-                  color: "primary.light",
-                  fontWeight: 700,
-                  letterSpacing: 1,
-                }}
-              >
-                {m.n}
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                sx={{ fontWeight: 700, mt: 0.5, mb: 0.75 }}
-              >
-                {m.name}
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ lineHeight: 1.6 }}
-              >
-                {m.desc}
-              </Typography>
-            </Card>
-          ))}
-        </Box>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        15 Functional Modules
+      </Typography>
+      <Box sx={{ mb: 4 }}>
+        <WorcareModulesSwiper modules={modulesList} />
       </Box>
 
       {/* Section 9 — Plans */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>PLANS</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
-          Three Tiers Built for Every Organization
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ ...innerCard, p: 2.5, height: "100%" }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1.5 }}>
-                Basic
-              </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  m: 0,
-                  pl: 2,
-                  color: "text.secondary",
-                  "& li": { mb: 0.75 },
-                }}
-              >
-                <li>Holistic assessment + employee wellbeing scores</li>
-                <li>Core content library</li>
-                <li>Standard structured programs</li>
-                <li>Basic behavioral tools</li>
-                <li>Credits engine</li>
-                <li>Marketplace access</li>
-                <li>Basic employer dashboard</li>
-              </Box>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        Three Tiers Built for Every Organization
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        {[
+          {
+            name: "Basic",
+            featured: false,
+            items: [
+              "Holistic assessment + employee wellbeing scores",
+              "Core content library",
+              "Standard structured programs",
+              "Basic behavioral tools",
+              "Credits engine",
+              "Marketplace access",
+              "Basic employer dashboard",
+            ],
+          },
+          {
+            name: "Pro",
+            featured: true,
+            items: [
+              "Everything in Basic",
+              "Advanced employer dashboard",
+              "Higher admin controls",
+              "Workshop eligibility",
+              "Stronger analytics and reporting",
+              "Webinar segmentation",
+            ],
+          },
+          {
+            name: "Enterprise",
+            featured: false,
+            items: [
+              "Everything in Pro",
+              "White-label / branded experience",
+              "Assessment customization",
+              "Enterprise HR system integrations",
+              "EAP add-on option",
+              "Advanced strategic reporting",
+              "Custom maturity support",
+            ],
+          },
+        ].map((plan) => (
+          <Grid item xs={12} md={4} key={plan.name}>
             <Card
               sx={{
                 ...innerCard,
                 p: 2.5,
                 height: "100%",
-                border: "2px solid",
-                borderColor: "primary.main",
-                bgcolor: "rgba(190, 14, 91, 0.1)",
-                position: "relative",
+                ...(plan.featured && {
+                  borderColor: "primary.main",
+                  bgcolor: "rgba(190,14,91,0.08)",
+                }),
               }}
             >
-              <Chip
-                label="Recommended"
-                size="small"
-                sx={{
-                  position: "absolute",
-                  top: 12,
-                  right: 12,
-                  fontWeight: 700,
-                  fontSize: "0.65rem",
-                  bgcolor: "primary.main",
-                  color: "#fff",
-                }}
-              />
-              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1.5 }}>
-                Pro
-              </Typography>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1.5 }}>
+                <Typography variant="subtitle1" fontWeight={700}>
+                  {plan.name}
+                </Typography>
+                {plan.featured && (
+                  <Chip
+                    label="Recommended"
+                    size="small"
+                    sx={{
+                      bgcolor: "primary.main",
+                      color: "#fff",
+                      fontWeight: 700,
+                      fontSize: "0.65rem",
+                    }}
+                  />
+                )}
+              </Box>
               <Box
                 component="ul"
                 sx={{
                   m: 0,
-                  pl: 2,
+                  pl: 2.5,
                   color: "text.secondary",
-                  "& li": { mb: 0.75 },
+                  "& li": { mb: 0.75, lineHeight: 1.65, fontSize: "0.875rem" },
                 }}
               >
-                <li>Everything in Basic</li>
-                <li>Advanced employer dashboard</li>
-                <li>Higher admin controls</li>
-                <li>Workshop eligibility</li>
-                <li>Stronger analytics and reporting</li>
-                <li>Webinar segmentation</li>
+                {plan.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
               </Box>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ ...innerCard, p: 2.5, height: "100%" }}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1.5 }}>
-                Enterprise
-              </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  m: 0,
-                  pl: 2,
-                  color: "text.secondary",
-                  "& li": { mb: 0.75 },
-                }}
-              >
-                <li>Everything in Pro</li>
-                <li>White-label / branded experience</li>
-                <li>Assessment customization</li>
-                <li>Enterprise HR system integrations</li>
-                <li>EAP add-on option</li>
-                <li>Advanced strategic reporting</li>
-                <li>Custom maturity support</li>
-              </Box>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
+        ))}
+      </Grid>
 
       {/* Section 10 — AI */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>AI INTELLIGENCE</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
-          AI Built Into the Core — Not Bolted On
-        </Typography>
-        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
-          Every AI component in WorCare is curated, controllable, and
-          reviewable. AI outputs are generated from approved knowledge — never
-          from uncontrolled public sources.
-        </Typography>
-        <Grid container spacing={2}>
-          {aiCards.map((a) => (
-            <Grid item xs={12} sm={6} md={4} key={a.title}>
-              <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-                <Typography variant="body2" sx={{ fontWeight: 700, mb: 0.75 }}>
-                  {a.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.6 }}
-                >
-                  {a.text}
-                </Typography>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        AI Built Into the Core
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        Every AI component in WorCare is curated, controllable, and reviewable.
+        AI outputs are generated from approved knowledge — never from
+        uncontrolled public sources.
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        {aiCards.map((a) => (
+          <Grid item xs={12} sm={6} key={a.title}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                fontWeight={700}
+                sx={{ color: "primary.main", mb: 0.5 }}
+              >
+                {a.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.7 }}
+              >
+                {a.text}
+              </Typography>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
 
       {/* Section 11 — Roadmap */}
-      <Box sx={{ mb: 5 }}>
-        <WorcareSectionLabel>ROADMAP</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 2 }}>
-          Three-Phase Build Plan
-        </Typography>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        Three-Phase Build Plan
+      </Typography>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        {[
+          {
+            label: "Phase 1",
+            title: "Core Operating System MVP",
+            body: "Employer onboarding · Employee onboarding · Holistic assessment · Scoring and baseline dashboard · Personalized content recommendations · Core content library · Structured programs · Behavioral tracking basics · Webinar and event calendar · Credits engine · Marketplace basic redemption · Employer dashboard (all plan tiers) · Maturity model rule-based version · EAP integration entry point",
+          },
+          {
+            label: "Phase 2",
+            title: "Advanced Strategic Layer",
+            body: "Absenteeism and productivity input models · Richer burnout analytics · Deeper maturity scoring · Employer benchmarking logic · White-label enhancements · Workshop management workflow · Custom assessment versions · Richer vendor workflows",
+          },
+          {
+            label: "Phase 3",
+            title: "AI & Ecosystem Expansion",
+            body: "Advanced recommendation engine · AI-generated content workflow expansion · Vendor discovery engine · Predictive risk analytics · Expanded enterprise integrations",
+          },
+        ].map((ph) => (
+          <Grid item xs={12} md={4} key={ph.label}>
             <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-              <Typography
-                variant="subtitle2"
-                sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
-              >
-                Phase 1 — Core Operating System MVP
+              <Chip
+                label={ph.label}
+                size="small"
+                sx={{
+                  bgcolor: "rgba(190,14,91,0.2)",
+                  color: "primary.light",
+                  fontWeight: 700,
+                  fontSize: "0.72rem",
+                  mb: 1,
+                }}
+              />
+              <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 0.75 }}>
+                {ph.title}
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
-                sx={{ lineHeight: 1.65 }}
+                sx={{ lineHeight: 1.7 }}
               >
-                Employer onboarding · Employee onboarding · Holistic assessment
-                · Scoring and baseline dashboard · Personalized content
-                recommendations · Core content library · Structured programs ·
-                Behavioral tracking basics · Webinar and event calendar ·
-                Credits engine · Marketplace basic redemption · Employer
-                dashboard (all plan tiers) · Maturity model rule-based version ·
-                EAP integration entry point
+                {ph.body}
               </Typography>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-              <Typography
-                variant="subtitle2"
-                sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
-              >
-                Phase 2 — Advanced Strategic Layer
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ lineHeight: 1.65 }}
-              >
-                Absenteeism and productivity input models · Richer burnout
-                analytics · Deeper maturity scoring · Employer benchmarking
-                logic · White-label enhancements · Workshop management workflow
-                · Custom assessment versions · Richer vendor workflows
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
-              <Typography
-                variant="subtitle2"
-                sx={{ fontWeight: 700, mb: 1, color: "primary.light" }}
-              >
-                Phase 3 — AI & Ecosystem Expansion
-              </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ lineHeight: 1.65 }}
-              >
-                Advanced recommendation engine · AI-generated content workflow
-                expansion · Vendor discovery engine · Predictive risk analytics
-                · Expanded enterprise integrations
-              </Typography>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
+        ))}
+      </Grid>
 
       {/* Section 12 — Build Principles */}
-      <Box sx={{ mb: 2 }}>
-        <WorcareSectionLabel>BUILD PRINCIPLES</WorcareSectionLabel>
-        <Typography variant="h6" sx={{ ...sectionTitle, mb: 1 }}>
-          10 Principles That Define How We Build
-        </Typography>
-        <Typography variant="body2" sx={{ ...bodyText, mb: 2 }}>
-          WorCare is engineered as a system — not assembled as a collection of
-          disconnected pages.
-        </Typography>
-        <Grid container spacing={1.5}>
-          {principles.map((text, i) => (
-            <Grid item xs={12} md={6} key={i}>
-              <Card sx={{ ...innerCard, p: 1.75, height: "100%" }}>
-                <Typography
-                  variant="body2"
-                  sx={{ fontWeight: 700, color: "primary.light", mb: 0.5 }}
-                >
-                  {i + 1}.
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ lineHeight: 1.65 }}
-                >
-                  {text}
-                </Typography>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <Typography variant="h6" sx={{ ...sectionTitle }}>
+        10 Build Principles
+      </Typography>
+      <Typography sx={{ ...bodyText, mb: 3 }}>
+        WorCare is engineered as a system — not assembled as a collection of
+        disconnected pages.
+      </Typography>
+      <Grid container spacing={2}>
+        {principles.map((text, i) => (
+          <Grid item xs={12} sm={6} key={i}>
+            <Card sx={{ ...innerCard, p: 2, height: "100%" }}>
+              <Typography
+                variant="subtitle2"
+                fontWeight={700}
+                sx={{ color: "primary.main", mb: 0.5 }}
+              >
+                {i + 1}. Principle
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ lineHeight: 1.7 }}
+              >
+                {text}
+              </Typography>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 }
